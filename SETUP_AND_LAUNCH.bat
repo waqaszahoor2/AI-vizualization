@@ -74,8 +74,9 @@ if %errorlevel% neq 0 (
 ) else (
     echo Starting Ollama service...
     start "Ollama AI" /min cmd /c "ollama serve"
-    echo Pulling AI Model (DeepSeek)...
+    echo Pulling AI Models (DeepSeek & Llava Vision)...
     ollama pull deepseek-coder:6.7b
+    ollama pull llava
 )
 
 :: 6. Launch Application

@@ -152,12 +152,17 @@ The frontend will be available at `http://localhost:3000`
 ollama serve
 ```
 
-3. **Pull the model**:
+3. **Pull the models**:
 ```bash
-ollama pull deepseek-coder
-# or
-ollama pull qwen2.5-coder
+# Required for text-to-chart analysis
+ollama pull deepseek-coder:6.7b
+
+# Required for image-to-chart (Vision) features
+ollama pull llava
 ```
+
+> [!TIP]
+> Our `SETUP_AND_LAUNCH.bat` script handles these downloads automatically for you!
 
 4. **Verify Ollama is running**:
    - Access http://localhost:11434/api/tags
