@@ -122,9 +122,10 @@ export default function DashboardOverview() {
             <div className="text-[10px] uppercase font-bold text-brand-400 tracking-widest">{timeZone}</div>
           </div>
           <div className="flex items-center gap-3">
-          <Link to="/workspace" className="btn-primary flex items-center gap-2 px-6 py-3">
-            <FiPlus /> New Dashboard
-          </Link>
+            <Link to="/workspace" className="btn-primary flex items-center gap-2 px-6 py-3">
+              <FiPlus /> New Dashboard
+            </Link>
+          </div>
         </div>
       </div>
 

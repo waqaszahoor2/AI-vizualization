@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import ReactECharts from 'echarts-for-react';
 import { FiFilter } from 'react-icons/fi';
+import toast from 'react-hot-toast';
 import { getChartData } from '../services/api';
 import { buildEChartsOption, isTableChartType } from '../utils/chartBuilder';
 import { useStore } from '../store/useStore';

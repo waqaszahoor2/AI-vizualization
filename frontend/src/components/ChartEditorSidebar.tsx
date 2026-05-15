@@ -8,7 +8,9 @@ import {
   FiTrash2, 
   FiCopy,
   FiChevronDown,
-  FiChevronUp
+  FiChevronUp,
+  FiDatabase,
+  FiActivity
 } from 'react-icons/fi';
 
 const CHART_TYPES = [

@@ -13,7 +13,8 @@ import {
   FiCpu, 
   FiMaximize,
   FiFileText,
-  FiImage
+  FiImage,
+  FiClock
 } from 'react-icons/fi';
 import { useStore } from '../store/useStore';
 import KPICards from './KPICards';

@@ -1,0 +1,566 @@
+{
+  "rows_count": 43,
+  "columns_count": 38,
+  "columns_info": [
+    {
+      "name": "Unnamed: 0",
+      "dtype": "object",
+      "null_count": 2,
+      "unique_count": 2,
+      "is_numeric": false,
+      "is_datetime": false,
+      "is_categorical": true,
+      "top_values": {
+        "punjab": 40,
+        "Province": 1
+      }
+    },
+    {
+      "name": "Unnamed: 1",
+      "dtype": "object",
+      "null_count": 2,
+      "unique_count": 2,
+      "is_numeric": false,
+      "is_datetime": false,
+      "is_categorical": true,
+      "top_values": {
+        "Multan": 40,
+        "District": 1
+      }
+    },
+    {
+      "name": "Unnamed: 2",
+      "dtype": "object",
+      "null_count": 2,
+      "unique_count": 2,
+      "is_numeric": false,
+      "is_datetime": false,
+      "is_categorical": true,
+      "top_values": {
+        "Musa pak": 40,
+        "Town": 1
+      }
+    },
+    {
+      "name": "Unnamed: 3",
+      "dtype": "object",
+      "null_count": 42,
+      "unique_count": 1,
+      "is_numeric": false,
+      "is_datetime": false,
+      "is_categorical": true,
+      "top_values": {
+        "Block": 1
+      }
+    },
+    {
+      "name": "Unnamed: 4",
+      "dtype": "object",
+      "null_count": 2,
+      "unique_count": 2,
+      "is_numeric": false,
+      "is_datetime": false,
+      "is_categorical": true,
+      "top_values": {
+        "Gulshan 5 Faiz": 40,
+        "UC": 1
+      }
+    },
+    {
+      "name": "Unnamed: 5",
+      "dtype": "object",
+      "null_count": 2,
+      "unique_count": 2,
+      "is_numeric": false,
+      "is_datetime": false,
+      "is_categorical": true,
+      "top_values": {
+        "Urban": 40,
+        "UC TYPE": 1
+      }
+    },
+    {
+      "name": "Unnamed: 6",
+      "dtype": "object",
+      "null_count": 2,
+      "unique_count": 2,
+      "is_numeric": false,
+      "is_datetime": false,
+      "is_categorical": true,
+      "top_values": {
+        "Tariq Bashir": 40,
+        "AIC NAME": 1
+      }
+    },
+    {
+      "name": "Unnamed: 7",
+      "dtype": "object",
+      "null_count": 2,
+      "unique_count": 2,
+      "is_numeric": false,
+      "is_datetime": false,
+      "is_categorical": true,
+      "top_values": {
+        "6": 40,
+        "AIC CODE": 1
+      }
+    },
+    {
+      "name": "Unnamed: 8",
+      "dtype": "object",
+      "null_count": 2,
+      "unique_count": 2,
+      "is_numeric": false,
+      "is_datetime": false,
+      "is_categorical": true,
+      "top_values": {
+        "mobile": 40,
+        "TEAM NAME": 1
+      }
+    },
+    {
+      "name": "Unnamed: 9",
+      "dtype": "object",
+      "null_count": 11,
+      "unique_count": 4,
+      "is_numeric": false,
+      "is_datetime": false,
+      "is_categorical": true,
+      "top_values": {
+        "20": 13,
+        "19": 10,
+        "18": 8,
+        "TEAM CODE": 1
+      }
+    },
+    {
+      "name": "Unnamed: 10",
+      "dtype": "object",
+      "null_count": 11,
+      "unique_count": 4,
+      "is_numeric": false,
+      "is_datetime": false,
+      "is_categorical": true,
+      "top_values": {
+        "3rd": 13,
+        "2nd": 9,
+        "1st": 9,
+        "CAMPAIGN DAY": 1
+      }
+    },
+    {
+      "name": "Unnamed: 11",
+      "dtype": "object",
+      "null_count": 11,
+      "unique_count": 25,
+      "is_numeric": false,
+      "is_datetime": false,
+      "is_categorical": true,
+      "top_values": {
+        "22": 3,
+        "60": 2,
+        "64": 2,
+        "3": 2,
+        "51": 2,
+        "62": 2,
+        "HOUSE NO": 1,
+        "19": 1,
+        "84": 1,
+        "68": 1
+      }
+    },
+    {
+      "name": "Unnamed: 12",
+      "dtype": "object",
+      "null_count": 11,
+      "unique_count": 30,
+      "is_numeric": false,
+      "is_datetime": false,
+      "is_categorical": true,
+      "top_values": {
+        "lock1": 3,
+        "CHILD NAME": 1,
+        "Mir": 1,
+        "Pakiza": 1,
+        "muhammad Ahad": 1,
+        "Muhammad": 1,
+        "Arhab": 1,
+        "Muhammad ": 1,
+        "Aman": 1,
+        "Fatima ": 1
+      }
+    },
+    {
+      "name": "Unnamed: 13",
+      "dtype": "object",
+      "null_count": 11,
+      "unique_count": 8,
+      "is_numeric": false,
+      "is_datetime": false,
+      "is_categorical": true,
+      "top_values": {
+        "MALE": 13,
+        "FEMALE": 8,
+        "UNSPECIFIED": 3,
+        "Female": 2,
+        "male": 2,
+        "female": 2,
+        "SEX": 1,
+        "Male": 1
+      }
+    },
+    {
+      "name": "Unnamed: 14",
+      "dtype": "object",
+      "null_count": 14,
+      "unique_count": 17,
+      "is_numeric": false,
+      "is_datetime": false,
+      "is_categorical": true,
+      "top_values": {
+        "24": 5,
+        "18": 3,
+        "48": 3,
+        "36": 3,
+        "50": 2,
+        "9": 2,
+        "AGE (MONTH)": 1,
+        "21": 1,
+        "1": 1,
+        "28": 1
+      }
+    },
+    {
+      "name": "Unnamed: 15",
+      "dtype": "object",
+      "null_count": 14,
+      "unique_count": 23,
+      "is_numeric": false,
+      "is_datetime": false,
+      "is_categorical": true,
+      "top_values": {
+        "Nadeem": 2,
+        "Younes": 2,
+        "Asad Bashir": 2,
+        "Jahandad": 2,
+        "Awais": 2,
+        "Shahid": 2,
+        "FATHER NAME": 1,
+        "Muzammil": 1,
+        "lateef": 1,
+        "Sajid": 1
+      }
+    },
+    {
+      "name": "Unnamed: 16",
+      "dtype": "object",
+      "null_count": 42,
+      "unique_count": 1,
+      "is_numeric": false,
+      "is_datetime": false,
+      "is_categorical": true,
+      "top_values": {
+        "CONTACT NO OF FAMILY": 1
+      }
+    },
+    {
+      "name": "Unnamed: 17",
+      "dtype": "object",
+      "null_count": 2,
+      "unique_count": 2,
+      "is_numeric": false,
+      "is_datetime": false,
+      "is_categorical": true,
+      "top_values": {
+        "Gulshan Faiz": 40,
+        "ADDRESS": 1
+      }
+    },
+    {
+      "name": "Unnamed: 18",
+      "dtype": "object",
+      "null_count": 42,
+      "unique_count": 1,
+      "is_numeric": false,
+      "is_datetime": false,
+      "is_categorical": true,
+      "top_values": {
+        "OCCUPATION": 1
+      }
+    },
+    {
+      "name": "Unnamed: 19",
+      "dtype": "object",
+      "null_count": 42,
+      "unique_count": 1,
+      "is_numeric": false,
+      "is_datetime": false,
+      "is_categorical": true,
+      "top_values": {
+        "Preferred physician to whom refusal family visits regularly": 1
+      }
+    },
+    {
+      "name": "Unnamed: 20",
+      "dtype": "object",
+      "null_count": 42,
+      "unique_count": 1,
+      "is_numeric": false,
+      "is_datetime": false,
+      "is_categorical": true,
+      "top_values": {
+        "Name of School Where HE/SHE Studies": 1
+      }
+    },
+    {
+      "name": "Unnamed: 21",
+      "dtype": "object",
+      "null_count": 42,
+      "unique_count": 1,
+      "is_numeric": false,
+      "is_datetime": false,
+      "is_categorical": true,
+      "top_values": {
+        "Posh(p)/Middle Class(MC)/Slum (S)": 1
+      }
+    },
+    {
+      "name": "Not Available",
+      "dtype": "object",
+      "null_count": 40,
+      "unique_count": 3,
+      "is_numeric": false,
+      "is_datetime": false,
+      "is_categorical": true,
+      "top_values": {
+        "Not Available": 1,
+        "Locked House": 1,
+        "Reason of Missed  NA/Locked House": 1
+      }
+    },
+    {
+      "name": "OUTSIDE DISTRCIT",
+      "dtype": "object",
+      "null_count": 40,
+      "unique_count": 3,
+      "is_numeric": false,
+      "is_datetime": false,
+      "is_categorical": true,
+      "top_values": {
+        "INSIDE DISTRICT": 1,
+        "Locked House": 1,
+        "Sub Reason NA": 1
+      }
+    },
+    {
+      "name": "Unnamed: 24",
+      "dtype": "object",
+      "null_count": 42,
+      "unique_count": 1,
+      "is_numeric": false,
+      "is_datetime": false,
+      "is_categorical": true,
+      "top_values": {
+        "LANGUAGE": 1
+      }
+    },
+    {
+      "name": "Unnamed: 25",
+      "dtype": "object",
+      "null_count": 42,
+      "unique_count": 1,
+      "is_numeric": false,
+      "is_datetime": false,
+      "is_categorical": true,
+      "top_values": {
+        "TRIBE": 1
+      }
+    },
+    {
+      "name": "Unnamed: 26",
+      "dtype": "object",
+      "null_count": 42,
+      "unique_count": 1,
+      "is_numeric": false,
+      "is_datetime": false,
+      "is_categorical": true,
+      "top_values": {
+        "RELIGIOUS/SECT": 1
+      }
+    },
+    {
+      "name": "Unnamed: 27",
+      "dtype": "object",
+      "null_count": 42,
+      "unique_count": 1,
+      "is_numeric": false,
+      "is_datetime": false,
+      "is_categorical": true,
+      "top_values": {
+        "For How many rounds,the child was missed?": 1
+      }
+    },
+    {
+      "name": "Unnamed: 28",
+      "dtype": "object",
+      "null_count": 42,
+      "unique_count": 1,
+      "is_numeric": false,
+      "is_datetime": false,
+      "is_categorical": true,
+      "top_values": {
+        "Is Child Zero Dose for EI? YES=1 , NO=0": 1
+      }
+    },
+    {
+      "name": "Unnamed: 29",
+      "dtype": "object",
+      "null_count": 42,
+      "unique_count": 1,
+      "is_numeric": false,
+      "is_datetime": false,
+      "is_categorical": true,
+      "top_values": {
+        "Name of The other UC inside the district where still NA has gone (outside parent UC) ": 1
+      }
+    },
+    {
+      "name": "Unnamed: 30",
+      "dtype": "object",
+      "null_count": 42,
+      "unique_count": 1,
+      "is_numeric": false,
+      "is_datetime": false,
+      "is_categorical": true,
+      "top_values": {
+        "Name of The other District where still NA has gone (outside parent UC) ": 1
+      }
+    },
+    {
+      "name": "Unnamed: 31",
+      "dtype": "object",
+      "null_count": 42,
+      "unique_count": 1,
+      "is_numeric": false,
+      "is_datetime": false,
+      "is_categorical": true,
+      "top_values": {
+        "Area Name Where they went (UC NAME)": 1
+      }
+    },
+    {
+      "name": "Unnamed: 32",
+      "dtype": "object",
+      "null_count": 42,
+      "unique_count": 1,
+      "is_numeric": false,
+      "is_datetime": false,
+      "is_categorical": true,
+      "top_values": {
+        "Expected date of return of NA": 1
+      }
+    },
+    {
+      "name": "Unnamed: 33",
+      "dtype": "object",
+      "null_count": 42,
+      "unique_count": 1,
+      "is_numeric": false,
+      "is_datetime": false,
+      "is_categorical": true,
+      "top_values": {
+        "Name of the Relevant influncer engaged": 1
+      }
+    },
+    {
+      "name": "Unnamed: 34",
+      "dtype": "object",
+      "null_count": 42,
+      "unique_count": 1,
+      "is_numeric": false,
+      "is_datetime": false,
+      "is_categorical": true,
+      "top_values": {
+        "Visited by (SM/Other)": 1
+      }
+    },
+    {
+      "name": "Unnamed: 35",
+      "dtype": "object",
+      "null_count": 42,
+      "unique_count": 1,
+      "is_numeric": false,
+      "is_datetime": false,
+      "is_categorical": true,
+      "top_values": {
+        "Convinced ? Yes/No": 1
+      }
+    },
+    {
+      "name": "Unnamed: 36",
+      "dtype": "object",
+      "null_count": 42,
+      "unique_count": 1,
+      "is_numeric": false,
+      "is_datetime": false,
+      "is_categorical": true,
+      "top_values": {
+        "Vaccinated? Yes/No": 1
+      }
+    },
+    {
+      "name": "Unnamed: 37",
+      "dtype": "object",
+      "null_count": 42,
+      "unique_count": 1,
+      "is_numeric": false,
+      "is_datetime": false,
+      "is_categorical": true,
+      "top_values": {
+        "Date of Vacinated": 1
+      }
+    }
+  ],
+  "memory_usage_mb": 0.07,
+  "missing_values": {
+    "Unnamed: 0": 2,
+    "Unnamed: 1": 2,
+    "Unnamed: 2": 2,
+    "Unnamed: 3": 42,
+    "Unnamed: 4": 2,
+    "Unnamed: 5": 2,
+    "Unnamed: 6": 2,
+    "Unnamed: 7": 2,
+    "Unnamed: 8": 2,
+    "Unnamed: 9": 11,
+    "Unnamed: 10": 11,
+    "Unnamed: 11": 11,
+    "Unnamed: 12": 11,
+    "Unnamed: 13": 11,
+    "Unnamed: 14": 14,
+    "Unnamed: 15": 14,
+    "Unnamed: 16": 42,
+    "Unnamed: 17": 2,
+    "Unnamed: 18": 42,
+    "Unnamed: 19": 42,
+    "Unnamed: 20": 42,
+    "Unnamed: 21": 42,
+    "Not Available": 40,
+    "OUTSIDE DISTRCIT": 40,
+    "Unnamed: 24": 42,
+    "Unnamed: 25": 42,
+    "Unnamed: 26": 42,
+    "Unnamed: 27": 42,
+    "Unnamed: 28": 42,
+    "Unnamed: 29": 42,
+    "Unnamed: 30": 42,
+    "Unnamed: 31": 42,
+    "Unnamed: 32": 42,
+    "Unnamed: 33": 42,
+    "Unnamed: 34": 42,
+    "Unnamed: 35": 42,
+    "Unnamed: 36": 42,
+    "Unnamed: 37": 42
+  },
+  "duplicates": 8
+}
