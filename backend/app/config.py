@@ -22,9 +22,9 @@ class Settings(BaseSettings):
 
     # ── Ollama AI ───────────────────────────────────────────
     OLLAMA_URL: str = "http://localhost:11434"
-    OLLAMA_MODEL_REASONING: str = "deepseek-r1:8b"
-    OLLAMA_MODEL_CODER: str = "deepseek-coder:6.7b"
-    OLLAMA_VISION_MODEL: str = "llava:latest"
+    OLLAMA_MODEL_REASONING: str = "qwen2.5-coder:1.5b"
+    OLLAMA_MODEL_CODER: str = "qwen2.5-coder:1.5b"
+    OLLAMA_VISION_MODEL: str = "moondream"
     OLLAMA_TIMEOUT: int = 300
 
     # ── Kimi (Moonshot AI) ──────────────────────────────────

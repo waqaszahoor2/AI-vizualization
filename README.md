@@ -154,15 +154,15 @@ ollama serve
 
 3. **Pull the models**:
 ```bash
-# Required for text-to-chart analysis (~4.0GB)
-ollama pull deepseek-coder:6.7b
+# Required for text-to-chart analysis (~980MB)
+ollama pull qwen2.5-coder:1.5b
 
-# Required for image-to-chart (Vision) features (~4.1GB)
-ollama pull llava
+# Required for image-to-chart (Vision) features (~830MB)
+ollama pull moondream
 ```
 
 > [!IMPORTANT]
-> These models are large (Total ~8GB). The first time you run the platform, it may take 15–30 minutes to download everything depending on your connection.
+> These models are highly optimized and light-weight (Total ~1.8GB). The first-time setup is now much faster compared to the 8GB version.
 
 > [!TIP]
 > Our `SETUP_AND_LAUNCH.bat` script handles these downloads automatically for you!

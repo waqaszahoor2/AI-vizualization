@@ -75,13 +75,12 @@ if %errorlevel% neq 0 (
     echo Starting Ollama service...
     start "Ollama AI" /min cmd /c "ollama serve"
     echo.
-    echo [IMPORTANT] The AI models are large (~8GB total). 
-    echo This may take 15-30 minutes on the first run.
-    echo Please do not close this window...
+    echo [IMPORTANT] The AI models are now optimized (~1.8GB total). 
+    echo This is much faster than the previous 8GB version.
     echo.
-    echo Pulling AI Models (DeepSeek & Llava Vision)...
-    ollama pull deepseek-coder:6.7b
-    ollama pull llava
+    echo Pulling Light-weight AI Models (Qwen & Moondream)...
+    ollama pull qwen2.5-coder:1.5b
+    ollama pull moondream
 )
 
 :: 6. Launch Application
