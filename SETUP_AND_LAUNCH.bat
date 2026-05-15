@@ -74,6 +74,11 @@ if %errorlevel% neq 0 (
 ) else (
     echo Starting Ollama service...
     start "Ollama AI" /min cmd /c "ollama serve"
+    echo.
+    echo [IMPORTANT] The AI models are large (~8GB total). 
+    echo This may take 15-30 minutes on the first run.
+    echo Please do not close this window...
+    echo.
     echo Pulling AI Models (DeepSeek & Llava Vision)...
     ollama pull deepseek-coder:6.7b
     ollama pull llava

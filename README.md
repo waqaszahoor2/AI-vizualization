@@ -154,12 +154,15 @@ ollama serve
 
 3. **Pull the models**:
 ```bash
-# Required for text-to-chart analysis
+# Required for text-to-chart analysis (~4.0GB)
 ollama pull deepseek-coder:6.7b
 
-# Required for image-to-chart (Vision) features
+# Required for image-to-chart (Vision) features (~4.1GB)
 ollama pull llava
 ```
+
+> [!IMPORTANT]
+> These models are large (Total ~8GB). The first time you run the platform, it may take 15–30 minutes to download everything depending on your connection.
 
 > [!TIP]
 > Our `SETUP_AND_LAUNCH.bat` script handles these downloads automatically for you!
