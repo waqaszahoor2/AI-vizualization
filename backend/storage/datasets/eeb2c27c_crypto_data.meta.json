@@ -1,0 +1,104 @@
+{
+  "rows_count": 300,
+  "columns_count": 6,
+  "columns_info": [
+    {
+      "name": "Date",
+      "dtype": "datetime64[ns]",
+      "null_count": 0,
+      "unique_count": 30,
+      "is_numeric": false,
+      "is_datetime": true,
+      "is_categorical": false,
+      "min_value": "2026-01-01 00:00:00",
+      "max_value": "2026-01-30 00:00:00"
+    },
+    {
+      "name": "Coin",
+      "dtype": "object",
+      "null_count": 0,
+      "unique_count": 10,
+      "is_numeric": false,
+      "is_datetime": false,
+      "is_categorical": true,
+      "top_values": {
+        "BTC": 30,
+        "ETH": 30,
+        "XRP": 30,
+        "SOL": 30,
+        "ADA": 30,
+        "TRX": 30,
+        "LTC": 30,
+        "BNB": 30,
+        "DOGE": 30,
+        "DOT": 30
+      }
+    },
+    {
+      "name": "Price",
+      "dtype": "float64",
+      "null_count": 0,
+      "unique_count": 300,
+      "is_numeric": true,
+      "is_datetime": false,
+      "is_categorical": false,
+      "min_value": 379.72,
+      "max_value": 74747.76,
+      "mean": 36590.99,
+      "median": 37710.51,
+      "std": 22866.43
+    },
+    {
+      "name": "Volume",
+      "dtype": "float64",
+      "null_count": 0,
+      "unique_count": 300,
+      "is_numeric": true,
+      "is_datetime": false,
+      "is_categorical": false,
+      "min_value": 241554830.0,
+      "max_value": 49502791966.71,
+      "mean": 25241952324.25,
+      "median": 26194182474.42,
+      "std": 14420346175.97
+    },
+    {
+      "name": "MarketCap",
+      "dtype": "float64",
+      "null_count": 0,
+      "unique_count": 300,
+      "is_numeric": true,
+      "is_datetime": false,
+      "is_categorical": false,
+      "min_value": 13142320215.13,
+      "max_value": 997936176422.8,
+      "mean": 478171151663.35,
+      "median": 470416037686.29,
+      "std": 296405271961.72
+    },
+    {
+      "name": "Change",
+      "dtype": "float64",
+      "null_count": 0,
+      "unique_count": 259,
+      "is_numeric": true,
+      "is_datetime": false,
+      "is_categorical": false,
+      "min_value": -4.89,
+      "max_value": 5.0,
+      "mean": 0.26,
+      "median": 0.4,
+      "std": 2.87
+    }
+  ],
+  "memory_usage_mb": 0.03,
+  "missing_values": {
+    "Date": 0,
+    "Coin": 0,
+    "Price": 0,
+    "Volume": 0,
+    "MarketCap": 0,
+    "Change": 0
+  },
+  "duplicates": 0
+}

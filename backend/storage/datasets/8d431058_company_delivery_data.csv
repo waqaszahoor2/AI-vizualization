@@ -1,0 +1,11 @@
+Order_ID,Order_Date,Customer_Name,Region,Product,Category,Units_Sold,Unit_Price,Revenue,Cost,Profit,Delivery_Status,Delivery_Date,Pending_Days
+1001,2025-01-02,Ali Khan,North,Laptop,Electronics,2,800,1600,1400,200,Delivered,2025-01-05,0
+1002,2025-01-03,Sara Ahmed,South,Chair,Furniture,5,120,600,450,150,Delivered,2025-01-06,0
+1003,2025-01-04,Usman Tariq,East,Mobile,Electronics,3,500,1500,1200,300,Pending,,5
+1004,2025-01-05,Ayesha Noor,West,Table,Furniture,2,250,500,350,150,Delivered,2025-01-08,0
+1005,2025-01-06,Hassan Raza,North,Headphones,Electronics,10,50,500,300,200,Cancelled,,0
+1006,2025-01-07,Mariam Ali,South,Sofa,Furniture,1,900,900,700,200,Pending,,7
+1007,2025-01-08,Bilal Shah,East,Smartwatch,Electronics,4,150,600,400,200,Delivered,2025-01-10,0
+1008,2025-01-09,Zainab Iqbal,West,Bed,Furniture,1,700,700,500,200,Pending,,6
+1009,2025-01-10,Omar Farooq,North,Tablet,Electronics,2,300,600,450,150,Delivered,2025-01-12,0
+1010,2025-01-11,Hina Malik,South,Desk,Furniture,3,200,600,450,150,Cancelled,,0

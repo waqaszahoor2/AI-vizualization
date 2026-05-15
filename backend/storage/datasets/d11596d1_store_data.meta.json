@@ -1,0 +1,219 @@
+{
+  "rows_count": 200,
+  "columns_count": 13,
+  "columns_info": [
+    {
+      "name": "Order ID",
+      "dtype": "object",
+      "null_count": 0,
+      "unique_count": 200,
+      "is_numeric": false,
+      "is_datetime": false,
+      "is_categorical": true,
+      "top_values": {
+        "ORD0001": 1,
+        "ORD0138": 1,
+        "ORD0128": 1,
+        "ORD0129": 1,
+        "ORD0130": 1,
+        "ORD0131": 1,
+        "ORD0132": 1,
+        "ORD0133": 1,
+        "ORD0134": 1,
+        "ORD0135": 1
+      }
+    },
+    {
+      "name": "Date",
+      "dtype": "datetime64[ns]",
+      "null_count": 0,
+      "unique_count": 156,
+      "is_numeric": false,
+      "is_datetime": true,
+      "is_categorical": false,
+      "min_value": "2024-01-01 00:00:00",
+      "max_value": "2024-12-31 00:00:00"
+    },
+    {
+      "name": "Customer Name",
+      "dtype": "object",
+      "null_count": 0,
+      "unique_count": 4,
+      "is_numeric": false,
+      "is_datetime": false,
+      "is_categorical": true,
+      "top_values": {
+        "Customer B": 57,
+        "Customer A": 55,
+        "Customer D": 52,
+        "Customer C": 36
+      }
+    },
+    {
+      "name": "Region",
+      "dtype": "object",
+      "null_count": 0,
+      "unique_count": 4,
+      "is_numeric": false,
+      "is_datetime": false,
+      "is_categorical": true,
+      "top_values": {
+        "North": 54,
+        "South": 53,
+        "West": 50,
+        "East": 43
+      }
+    },
+    {
+      "name": "City",
+      "dtype": "object",
+      "null_count": 0,
+      "unique_count": 5,
+      "is_numeric": false,
+      "is_datetime": false,
+      "is_categorical": true,
+      "top_values": {
+        "Karachi": 46,
+        "Peshawar": 45,
+        "Quetta": 40,
+        "Islamabad": 37,
+        "Lahore": 32
+      }
+    },
+    {
+      "name": "Product Category",
+      "dtype": "object",
+      "null_count": 0,
+      "unique_count": 4,
+      "is_numeric": false,
+      "is_datetime": false,
+      "is_categorical": true,
+      "top_values": {
+        "Clothing": 54,
+        "Furniture": 51,
+        "Groceries": 50,
+        "Electronics": 45
+      }
+    },
+    {
+      "name": "Product Name",
+      "dtype": "object",
+      "null_count": 0,
+      "unique_count": 6,
+      "is_numeric": false,
+      "is_datetime": false,
+      "is_categorical": true,
+      "top_values": {
+        "Laptop": 38,
+        "Mobile": 37,
+        "Headphones": 36,
+        "Shirt": 32,
+        "Rice": 29,
+        "Sofa": 28
+      }
+    },
+    {
+      "name": "Units Sold",
+      "dtype": "int64",
+      "null_count": 0,
+      "unique_count": 20,
+      "is_numeric": true,
+      "is_datetime": false,
+      "is_categorical": false,
+      "min_value": 1.0,
+      "max_value": 20.0,
+      "mean": 10.09,
+      "median": 10.0,
+      "std": 5.76
+    },
+    {
+      "name": "Unit Price",
+      "dtype": "int64",
+      "null_count": 0,
+      "unique_count": 164,
+      "is_numeric": true,
+      "is_datetime": false,
+      "is_categorical": false,
+      "min_value": 13.0,
+      "max_value": 494.0,
+      "mean": 262.06,
+      "median": 273.0,
+      "std": 146.63
+    },
+    {
+      "name": "Revenue",
+      "dtype": "int64",
+      "null_count": 0,
+      "unique_count": 194,
+      "is_numeric": true,
+      "is_datetime": false,
+      "is_categorical": false,
+      "min_value": 28.0,
+      "max_value": 8240.0,
+      "mean": 2569.99,
+      "median": 2070.0,
+      "std": 2106.67
+    },
+    {
+      "name": "Cost",
+      "dtype": "float64",
+      "null_count": 0,
+      "unique_count": 200,
+      "is_numeric": true,
+      "is_datetime": false,
+      "is_categorical": false,
+      "min_value": 17.21,
+      "max_value": 5630.06,
+      "mean": 1710.82,
+      "median": 1336.91,
+      "std": 1435.67
+    },
+    {
+      "name": "Profit",
+      "dtype": "float64",
+      "null_count": 0,
+      "unique_count": 200,
+      "is_numeric": true,
+      "is_datetime": false,
+      "is_categorical": false,
+      "min_value": 10.79,
+      "max_value": 3315.24,
+      "mean": 859.17,
+      "median": 659.44,
+      "std": 744.94
+    },
+    {
+      "name": "Salesperson",
+      "dtype": "object",
+      "null_count": 0,
+      "unique_count": 5,
+      "is_numeric": false,
+      "is_datetime": false,
+      "is_categorical": true,
+      "top_values": {
+        "Zain": 47,
+        "Sara": 40,
+        "Ali": 39,
+        "Ahmed": 39,
+        "Ayesha": 35
+      }
+    }
+  ],
+  "memory_usage_mb": 0.09,
+  "missing_values": {
+    "Order ID": 0,
+    "Date": 0,
+    "Customer Name": 0,
+    "Region": 0,
+    "City": 0,
+    "Product Category": 0,
+    "Product Name": 0,
+    "Units Sold": 0,
+    "Unit Price": 0,
+    "Revenue": 0,
+    "Cost": 0,
+    "Profit": 0,
+    "Salesperson": 0
+  },
+  "duplicates": 0
+}

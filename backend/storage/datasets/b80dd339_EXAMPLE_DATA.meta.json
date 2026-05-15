@@ -1,0 +1,100 @@
+{
+  "rows_count": 30,
+  "columns_count": 6,
+  "columns_info": [
+    {
+      "name": "Date",
+      "dtype": "datetime64[ns]",
+      "null_count": 0,
+      "unique_count": 10,
+      "is_numeric": false,
+      "is_datetime": true,
+      "is_categorical": false,
+      "min_value": "2024-01-01 00:00:00",
+      "max_value": "2024-01-10 00:00:00"
+    },
+    {
+      "name": "Product",
+      "dtype": "object",
+      "null_count": 0,
+      "unique_count": 5,
+      "is_numeric": false,
+      "is_datetime": false,
+      "is_categorical": true,
+      "top_values": {
+        "Laptop": 7,
+        "Monitor": 7,
+        "Keyboard": 6,
+        "Mouse": 5,
+        "Headphones": 5
+      }
+    },
+    {
+      "name": "Sales",
+      "dtype": "int64",
+      "null_count": 0,
+      "unique_count": 27,
+      "is_numeric": true,
+      "is_datetime": false,
+      "is_categorical": false,
+      "min_value": 45.0,
+      "max_value": 1300.0,
+      "mean": 427.07,
+      "median": 162.5,
+      "std": 460.51
+    },
+    {
+      "name": "Quantity",
+      "dtype": "int64",
+      "null_count": 0,
+      "unique_count": 11,
+      "is_numeric": true,
+      "is_datetime": false,
+      "is_categorical": false,
+      "min_value": 1.0,
+      "max_value": 12.0,
+      "mean": 4.8,
+      "median": 4.0,
+      "std": 2.93
+    },
+    {
+      "name": "Region",
+      "dtype": "object",
+      "null_count": 0,
+      "unique_count": 4,
+      "is_numeric": false,
+      "is_datetime": false,
+      "is_categorical": true,
+      "top_values": {
+        "North": 8,
+        "South": 8,
+        "East": 7,
+        "West": 7
+      }
+    },
+    {
+      "name": "Revenue",
+      "dtype": "int64",
+      "null_count": 0,
+      "unique_count": 27,
+      "is_numeric": true,
+      "is_datetime": false,
+      "is_categorical": false,
+      "min_value": 294.0,
+      "max_value": 4800.0,
+      "mean": 1200.23,
+      "median": 800.0,
+      "std": 1052.96
+    }
+  ],
+  "memory_usage_mb": 0.0,
+  "missing_values": {
+    "Date": 0,
+    "Product": 0,
+    "Sales": 0,
+    "Quantity": 0,
+    "Region": 0,
+    "Revenue": 0
+  },
+  "duplicates": 0
+}

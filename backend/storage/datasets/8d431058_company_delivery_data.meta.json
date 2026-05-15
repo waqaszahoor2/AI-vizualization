@@ -1,0 +1,243 @@
+{
+  "rows_count": 10,
+  "columns_count": 14,
+  "columns_info": [
+    {
+      "name": "Order_ID",
+      "dtype": "int64",
+      "null_count": 0,
+      "unique_count": 10,
+      "is_numeric": true,
+      "is_datetime": false,
+      "is_categorical": false,
+      "min_value": 1001.0,
+      "max_value": 1010.0,
+      "mean": 1005.5,
+      "median": 1005.5,
+      "std": 3.03
+    },
+    {
+      "name": "Order_Date",
+      "dtype": "object",
+      "null_count": 0,
+      "unique_count": 10,
+      "is_numeric": false,
+      "is_datetime": false,
+      "is_categorical": true,
+      "top_values": {
+        "2025-01-02": 1,
+        "2025-01-03": 1,
+        "2025-01-04": 1,
+        "2025-01-05": 1,
+        "2025-01-06": 1,
+        "2025-01-07": 1,
+        "2025-01-08": 1,
+        "2025-01-09": 1,
+        "2025-01-10": 1,
+        "2025-01-11": 1
+      }
+    },
+    {
+      "name": "Customer_Name",
+      "dtype": "object",
+      "null_count": 0,
+      "unique_count": 10,
+      "is_numeric": false,
+      "is_datetime": false,
+      "is_categorical": true,
+      "top_values": {
+        "Ali Khan": 1,
+        "Sara Ahmed": 1,
+        "Usman Tariq": 1,
+        "Ayesha Noor": 1,
+        "Hassan Raza": 1,
+        "Mariam Ali": 1,
+        "Bilal Shah": 1,
+        "Zainab Iqbal": 1,
+        "Omar Farooq": 1,
+        "Hina Malik": 1
+      }
+    },
+    {
+      "name": "Region",
+      "dtype": "object",
+      "null_count": 0,
+      "unique_count": 4,
+      "is_numeric": false,
+      "is_datetime": false,
+      "is_categorical": true,
+      "top_values": {
+        "North": 3,
+        "South": 3,
+        "East": 2,
+        "West": 2
+      }
+    },
+    {
+      "name": "Product",
+      "dtype": "object",
+      "null_count": 0,
+      "unique_count": 10,
+      "is_numeric": false,
+      "is_datetime": false,
+      "is_categorical": true,
+      "top_values": {
+        "Laptop": 1,
+        "Chair": 1,
+        "Mobile": 1,
+        "Table": 1,
+        "Headphones": 1,
+        "Sofa": 1,
+        "Smartwatch": 1,
+        "Bed": 1,
+        "Tablet": 1,
+        "Desk": 1
+      }
+    },
+    {
+      "name": "Category",
+      "dtype": "object",
+      "null_count": 0,
+      "unique_count": 2,
+      "is_numeric": false,
+      "is_datetime": false,
+      "is_categorical": true,
+      "top_values": {
+        "Electronics": 5,
+        "Furniture": 5
+      }
+    },
+    {
+      "name": "Units_Sold",
+      "dtype": "int64",
+      "null_count": 0,
+      "unique_count": 6,
+      "is_numeric": true,
+      "is_datetime": false,
+      "is_categorical": false,
+      "min_value": 1.0,
+      "max_value": 10.0,
+      "mean": 3.3,
+      "median": 2.5,
+      "std": 2.67
+    },
+    {
+      "name": "Unit_Price",
+      "dtype": "int64",
+      "null_count": 0,
+      "unique_count": 10,
+      "is_numeric": true,
+      "is_datetime": false,
+      "is_categorical": false,
+      "min_value": 50.0,
+      "max_value": 900.0,
+      "mean": 397.0,
+      "median": 275.0,
+      "std": 306.56
+    },
+    {
+      "name": "Revenue",
+      "dtype": "int64",
+      "null_count": 0,
+      "unique_count": 6,
+      "is_numeric": true,
+      "is_datetime": false,
+      "is_categorical": false,
+      "min_value": 500.0,
+      "max_value": 1600.0,
+      "mean": 810.0,
+      "median": 600.0,
+      "std": 406.75
+    },
+    {
+      "name": "Cost",
+      "dtype": "int64",
+      "null_count": 0,
+      "unique_count": 8,
+      "is_numeric": true,
+      "is_datetime": false,
+      "is_categorical": false,
+      "min_value": 300.0,
+      "max_value": 1400.0,
+      "mean": 620.0,
+      "median": 450.0,
+      "std": 376.53
+    },
+    {
+      "name": "Profit",
+      "dtype": "int64",
+      "null_count": 0,
+      "unique_count": 3,
+      "is_numeric": true,
+      "is_datetime": false,
+      "is_categorical": false,
+      "min_value": 150.0,
+      "max_value": 300.0,
+      "mean": 190.0,
+      "median": 200.0,
+      "std": 45.95
+    },
+    {
+      "name": "Delivery_Status",
+      "dtype": "object",
+      "null_count": 0,
+      "unique_count": 3,
+      "is_numeric": false,
+      "is_datetime": false,
+      "is_categorical": true,
+      "top_values": {
+        "Delivered": 5,
+        "Pending": 3,
+        "Cancelled": 2
+      }
+    },
+    {
+      "name": "Delivery_Date",
+      "dtype": "object",
+      "null_count": 5,
+      "unique_count": 5,
+      "is_numeric": false,
+      "is_datetime": false,
+      "is_categorical": true,
+      "top_values": {
+        "2025-01-05": 1,
+        "2025-01-06": 1,
+        "2025-01-08": 1,
+        "2025-01-10": 1,
+        "2025-01-12": 1
+      }
+    },
+    {
+      "name": "Pending_Days",
+      "dtype": "int64",
+      "null_count": 0,
+      "unique_count": 4,
+      "is_numeric": true,
+      "is_datetime": false,
+      "is_categorical": false,
+      "min_value": 0.0,
+      "max_value": 7.0,
+      "mean": 1.8,
+      "median": 0.0,
+      "std": 2.94
+    }
+  ],
+  "memory_usage_mb": 0.0,
+  "missing_values": {
+    "Order_ID": 0,
+    "Order_Date": 0,
+    "Customer_Name": 0,
+    "Region": 0,
+    "Product": 0,
+    "Category": 0,
+    "Units_Sold": 0,
+    "Unit_Price": 0,
+    "Revenue": 0,
+    "Cost": 0,
+    "Profit": 0,
+    "Delivery_Status": 0,
+    "Delivery_Date": 5,
+    "Pending_Days": 0
+  },
+  "duplicates": 0
+}
