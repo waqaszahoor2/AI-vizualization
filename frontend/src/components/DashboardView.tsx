@@ -41,6 +41,7 @@ interface Props {
 export default function DashboardView({ onBack, readOnly }: Props) {
   const { 
     dashboard, 
+    setDashboard,
     setLayout, 
     dashboardFilters, 
     setDashboardFilters, 
@@ -146,6 +147,22 @@ export default function DashboardView({ onBack, readOnly }: Props) {
           </div>
 
           <div className="flex items-center gap-2">
+            <div className="flex items-center bg-black/5 dark:bg-white/5 p-1 rounded-xl border border-black/5 dark:border-white/5 mr-2">
+              <button
+                onClick={() => {
+                  if (confirm('Start creating a new dashboard? Current unsaved changes might be lost.')) {
+                    setDashboard(null);
+                    if (onBack) onBack();
+                  }
+                }}
+                className="flex items-center gap-2 px-3 py-1.5 rounded-lg text-brand-600 dark:text-brand-400 hover:bg-brand-500/10 transition-all text-xs font-bold"
+                title="Create a totally different dashboard"
+              >
+                <FiPlus size={14} />
+                Create Another
+              </button>
+            </div>
+
             {!readOnly && (
               <>
                 <button

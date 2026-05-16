@@ -1,6 +1,7 @@
 import React, { useState, useCallback, useEffect } from 'react';
 import axios from 'axios';
 import { useDropzone } from 'react-dropzone';
+import { FiArrowLeft } from 'react-icons/fi';
 import toast from 'react-hot-toast';
 import { useStore } from '../store/useStore';
 import {
@@ -247,7 +248,18 @@ export default function WorkspacePage() {
       {step === 'prompt' && uploadData && (
         <div className="animate-fade-in">
           <h1 className="text-3xl font-bold text-center mb-2">Describe Your Dashboard</h1>
-          <p className="text-slate-500 dark:text-white/40 text-center mb-8">Tell AI what kind of dashboard you want — or match a screenshot (Ollama vision)</p>
+          <div className="flex justify-center mb-8">
+            <button 
+              onClick={() => {
+                setUploadData(null);
+                setStep('upload');
+              }}
+              className="text-xs font-bold text-brand-600 dark:text-brand-400 hover:underline uppercase tracking-widest flex items-center gap-1"
+            >
+              <FiArrowLeft size={12} />
+              Switch Dataset / Start Fresh
+            </button>
+          </div>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3 mb-6">
             <div className={`text-xs px-4 py-2 rounded-xl border ${ollamaStatus.includes('Connected') ? 'border-emerald-500/30 text-emerald-600 dark:text-emerald-300 bg-emerald-500/5' : 'border-amber-500/20 text-amber-600 dark:text-amber-200/80 bg-amber-500/5'}`}>

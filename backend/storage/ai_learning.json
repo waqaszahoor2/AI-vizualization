@@ -1,0 +1,27 @@
+[
+  {
+    "q": "make dashboard",
+    "a": {
+      "title": "Dashboard: make dashboard",
+      "summary": "Dashboard for 700 rows",
+      "charts": [
+        {
+          "type": "line",
+          "title": "Units Sold Over Time",
+          "x": "Date",
+          "y": [
+            "Units Sold"
+          ]
+        },
+        {
+          "type": "bar",
+          "title": "Units Sold by Segment",
+          "x": "Segment",
+          "y": [
+            "Units Sold"
+          ]
+        }
+      ]
+    }
+  }
+]
