@@ -210,7 +210,7 @@ export default function DashboardView({ onBack, readOnly }: Props) {
             <h3 className="text-sm font-bold text-brand-600 dark:text-brand-400 uppercase tracking-widest mb-4">AI Intelligence Report</h3>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
               {dashboard.insights.map((insight, i) => (
-                <div key={i} className="flex gap-3 text-sm text-slate-600 dark:text-white/60 leading-relaxed bg-black/2 dark:bg-white/[0.02] p-3 rounded-xl border border-black/5 dark:border-white/5">
+                <div key={i} className="flex gap-3 text-sm text-slate-600 dark:text-white/60 leading-relaxed bg-black/[0.02] dark:bg-white/[0.02] p-3 rounded-xl border border-black/5 dark:border-white/5">
                   <div className="w-1.5 h-1.5 rounded-full bg-brand-500 mt-2 shrink-0" />
                   <span>{insight}</span>
                 </div>

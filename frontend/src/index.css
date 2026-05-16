@@ -168,11 +168,11 @@
 }
 
 .model-item:hover {
-  @apply bg-black/10 dark:bg-white/[0.06] text-slate-900 dark:text-white/90 border-black/10 dark:border-white/0.08;
+  @apply bg-black/10 dark:bg-white/[0.06] text-slate-900 dark:text-white/90 border-black/10 dark:border-white/[0.08];
 }
 
 .model-item-active {
-  @apply bg-brand-500/10 dark:bg-brand-500/12 text-brand-600 dark:text-brand-300 border-brand-500/30 !important;
+  @apply bg-brand-500/10 dark:bg-brand-500/10 text-brand-600 dark:text-brand-300 border-brand-500/30 !important;
 }
 
 /* ── Chat Panel ───────────────────────────────────────── */
@@ -395,7 +395,7 @@
   text-align: left;
   padding: 8px 12px;
   border-radius: 10px;
-  @apply bg-black/5 dark:bg-white/[0.02] border border-black/5 dark:border-white/[0.04] text-slate-500 dark:text-white/50 text-[12px] transition-all duration-150;
+  @apply bg-black/[0.05] dark:bg-white/[0.02] border border-black/[0.05] dark:border-white/[0.04] text-slate-500 dark:text-white/50 text-[12px] transition-all duration-150;
   cursor: pointer;
 }
 

@@ -171,7 +171,7 @@ export default function ChartWidget({ chart, filePath, readOnly, allowEditing = 
             <div className="w-8 h-8 border-3 border-brand-500/30 border-t-brand-500 rounded-full animate-spin" />
           </div>
         ) : isTable && data?.categories ? (
-          <div className="h-full overflow-auto rounded-2xl border border-black/5 dark:border-white/5 bg-black/2 dark:bg-white/[0.02]">
+          <div className="h-full overflow-auto rounded-2xl border border-black/5 dark:border-white/5 bg-black/[0.02] dark:bg-white/[0.02]">
             <table className="w-full text-xs text-left text-slate-700 dark:text-white/80">
               <thead>
                 <tr className="border-b border-black/5 dark:border-white/10 bg-black/5 dark:bg-white/[0.04]">

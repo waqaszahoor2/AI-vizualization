@@ -42,7 +42,7 @@ const StatCard = ({ icon: Icon, title, value, detail, trend }: any) => (
 );
 
 const ActivityItem = ({ title, time, status, type }: any) => (
-  <div className="flex items-center gap-4 p-4 rounded-xl hover:bg-black/2 dark:hover:bg-white/[0.03] transition-colors border border-transparent hover:border-black/5 dark:hover:border-white/5">
+  <div className="flex items-center gap-4 p-4 rounded-xl hover:bg-black/[0.02] dark:hover:bg-white/[0.03] transition-colors border border-transparent hover:border-black/5 dark:hover:border-white/5">
     <div className={`p-2.5 rounded-lg ${
       type === 'upload' ? 'bg-blue-500/10 text-blue-600 dark:text-blue-400' : 
       type === 'generate' ? 'bg-purple-500/10 text-purple-600 dark:text-purple-400' : 
@@ -209,7 +209,7 @@ export default function DashboardOverview() {
                   { icon: FiBarChart2, label: 'Monthly Growth', color: 'text-purple-600 dark:text-purple-400' },
                   { icon: FiTrendingUp, label: 'Revenue Trends', color: 'text-emerald-600 dark:text-emerald-400' },
                 ].map((item, i) => (
-                  <div key={i} className="bg-black/2 dark:bg-white/[0.03] border border-black/5 dark:border-white/5 rounded-xl p-4 hover:bg-black/5 dark:hover:bg-white/[0.06] transition-colors cursor-pointer group">
+                  <div key={i} className="bg-black/[0.02] dark:bg-white/[0.03] border border-black/5 dark:border-white/5 rounded-xl p-4 hover:bg-black/5 dark:hover:bg-white/[0.06] transition-colors cursor-pointer group">
                     <item.icon className={`mb-3 ${item.color}`} size={24} />
                     <div className="text-sm font-medium mb-1 text-slate-900 dark:text-white">{item.label}</div>
                     <div className="text-[10px] text-slate-400 dark:text-white/30 flex items-center gap-1 group-hover:text-slate-600 dark:group-hover:text-white/50">
