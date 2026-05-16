@@ -41,8 +41,15 @@ export default function Navbar() {
             <div className="text-[9px] font-bold text-brand-600 dark:text-brand-400 tracking-wider uppercase">{offStr}</div>
           </div>
 
-          <Link to="/dashboard" className={`text-sm font-medium px-4 py-2 rounded-lg transition-colors ${loc.pathname === '/dashboard' ? 'text-brand-500 dark:text-brand-400 bg-brand-500/10' : 'text-slate-600 dark:text-white/60 hover:text-slate-900 dark:hover:text-white hover:bg-black/5 dark:hover:bg-white/5'}`}>
-            Dashboard
+          <Link 
+            to="/dashboard" 
+            className={`text-sm font-bold px-4 py-2 rounded-xl transition-all flex items-center gap-2 ${
+              loc.pathname === '/dashboard' 
+                ? 'text-brand-600 dark:text-brand-400 bg-brand-500/10' 
+                : 'text-slate-500 dark:text-white/40 hover:text-slate-900 dark:hover:text-white/80 hover:bg-black/5 dark:hover:bg-white/5'
+            }`}
+          >
+            📂 My Dashboards
           </Link>
           
           <button 

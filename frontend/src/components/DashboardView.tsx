@@ -12,6 +12,7 @@ import {
   FiPlus, 
   FiCpu, 
   FiMaximize,
+  FiMaximize2,
   FiFileText,
   FiImage,
   FiClock
@@ -279,13 +280,22 @@ export default function DashboardView({ onBack, readOnly }: Props) {
                   }
                 }}
               >
-                <div className="glass-card h-full p-4 overflow-hidden">
-                  <ChartWidget
-                    chart={chart}
-                    filePath={dashboard.file_path}
-                    readOnly={readOnly}
-                    allowEditing={allowEditing}
-                  />
+                <div className="h-full p-0.5 group/chart">
+                  <div className="glass-card h-full p-4 overflow-hidden relative">
+                    <ChartWidget
+                      chart={chart}
+                      filePath={dashboard.file_path}
+                      readOnly={readOnly}
+                      allowEditing={allowEditing}
+                    />
+                    
+                    {/* Visual Resize Indicator */}
+                    {allowEditing && (
+                      <div className="absolute bottom-1 right-1 opacity-20 group-hover/chart:opacity-60 transition-opacity pointer-events-none">
+                        <FiMaximize2 size={10} className="text-brand-600 dark:text-brand-400" />
+                      </div>
+                    )}
+                  </div>
                 </div>
                 
                 {allowEditing && (

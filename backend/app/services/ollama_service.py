@@ -54,7 +54,11 @@ class OllamaService:
         vision_model = getattr(settings, "OLLAMA_VISION_MODEL", "moondream")
         
         # Step 1: Describe the visual layout
-        desc_prompt = "Analyze this dashboard image. Describe the layout, chart types (bar, line, etc.), kpi metrics, and visual structure. Be specific about what each chart shows."
+        desc_prompt = """Look closely at the image. 
+1. EXACT COUNT: How many charts are there? How many KPI cards (big numbers)?
+2. FOR EACH CHART: What type is it? What is its title? What metrics are on X and Y axis?
+3. LAYOUT: How are they arranged? (e.g. 2 KPIs on top, 2 bar charts in middle, 1 line chart at bottom)
+Provide a detailed technical description of this dashboard architecture."""
         try:
             description = await self._call_ollama_vision(desc_prompt, image_base64, model=vision_model)
             logger.info(f"Vision analysis complete: {len(description)} chars")
@@ -66,17 +70,18 @@ class OllamaService:
         cols = self._describe_columns(dataset_info.get("columns_info", []))
         sample_str = json.dumps(sample_data[:5] if sample_data else [], default=str)
         
-        final_prompt = f"""Task: Create BI Dashboard JSON based on this reference layout description.
-REFERENCE LAYOUT:
+        final_prompt = f"""Task: Create a complex, production-ready BI Dashboard JSON based on this reference layout.
+REFERENCE LAYOUT DESCRIPTION:
 {description}
 
-DATASET: {dataset_info.get('rows_count','?')} rows
+DATASET CONTEXT: {dataset_info.get('rows_count','?')} rows
 COLUMNS: {cols}
-SAMPLE: {sample_str}
-USER NOTES: {extra_prompt or ""}
+SAMPLE DATA: {sample_str}
+USER SPECIAL NOTES: {extra_prompt or "Follow the image exactly."}
 
-Format: {{"title":"","summary":"","insights":[],"kpis":[],"charts":[],"layout":[]}}
-Response: JSON only."""
+GOAL: Map the reference layout to the REAL columns in this dataset. If the image shows 6 charts, create 6 charts.
+Format: {{"title":"","summary":"","insights":["..."],"kpis":[],"charts":[],"layout":[]}}
+IMPORTANT: Return ONLY raw JSON. Do not explain anything."""
 
         try:
             response = await self._call_ollama(final_prompt)
@@ -129,22 +134,31 @@ Response: JSON only."""
                         patterns = f"LEARNED PATTERN: Q:{best[0]['q']} -> A:{json.dumps(best[0]['a'])}\n"
         except: pass
 
-        return f"""Task: Create BI Dashboard JSON.
-{patterns}Data: {info.get('rows_count','?')} rows.
-Cols: {cols}
-Sample: {sample_str}
-User: {prompt}
-Format: {{"title":"","summary":"","insights":[],"kpis":[],"charts":[],"layout":[]}}
-Response: JSON only."""
+        return f"""Task: Create a high-fidelity, high-complexity BI Dashboard JSON.
+{patterns}DATASET: {info.get('rows_count','?')} rows.
+COLUMNS AVAILABLE: {cols}
+SAMPLE DATA: {sample_str}
+USER REQUEST: {prompt}
+
+GOALS:
+1. EXHAUSTIVE ANALYSIS: If the dataset has many metrics, create 6-10 diverse charts to show every angle.
+2. NO LIMITS: Do not stop at 4 charts. Use as many as needed to satisfy the request (up to 12 if complex).
+3. VARIETY: Use line, area, bar, pie, donut, heatmap, etc.
+4. VALIDITY: Only use columns from the 'COLUMNS AVAILABLE' list.
+
+Format: {{"title":"","summary":"","insights":["..."],"kpis":[],"charts":[],"layout":[]}}
+IMPORTANT: Return ONLY raw JSON. No conversational text."""
 
     def _describe_columns(self, cols: List[Dict]) -> str:
         lines = []
         for c in cols:
-            s = f"{c['name']}({c.get('dtype','?')})"
-            if c.get("top_values"):
-                s += f"[{','.join(list(c['top_values'].keys())[:2])}]"
-            lines.append(s)
-        return ", ".join(lines)
+            # Enhanced description for better image mapping
+            dtype = c.get('dtype', 'unknown')
+            is_num = "numeric" if c.get('is_numeric') else "categorical"
+            top = list(c.get('top_values', {}).keys())[:3]
+            top_str = f" [examples: {', '.join(top)}]" if top else ""
+            lines.append(f"- {c['name']} ({dtype}, {is_num}){top_str}")
+        return "\n".join(lines)
 
     async def _call_kimi(self, prompt: str, model: str = "moonshot-v1-8k") -> str:
         async with aiohttp.ClientSession() as session:
