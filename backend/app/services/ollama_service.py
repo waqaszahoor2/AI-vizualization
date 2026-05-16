@@ -140,8 +140,9 @@ Response: JSON only."""
                 raise Exception(f"Kimi error {resp.status}: {await resp.text()}")
 
     async def _call_ollama(self, prompt: str, model: Optional[str] = None) -> str:
-        if getattr(settings, "KIMI_API_KEY", None) and settings.KIMI_API_KEY != "PASTE_YOUR_KIMI_KEY_HERE":
-            return await self._call_kimi(prompt, model or "moonshot-v1-8k")
+        # Only use Kimi if explicitly requested via model name
+        if model and model.startswith("moonshot"):
+            return await self._call_kimi(prompt, model)
 
         model = model or self.model_reasoning
         async with aiohttp.ClientSession() as session:
