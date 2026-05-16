@@ -67,7 +67,9 @@ htmlcov/
 
 # Storage
 storage/datasets/*
+backend/storage/datasets/*
 !storage/datasets/.gitkeep
+!backend/storage/datasets/.gitkeep
 
 # Logs
 logs/

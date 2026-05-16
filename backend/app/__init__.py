@@ -6,7 +6,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 from app.config import settings
-from app.routers import upload, dashboard, ai, chat
+from app.routers import upload, dashboard, ai, chat, health
 
 logging.basicConfig(level=getattr(logging, settings.LOG_LEVEL, logging.INFO))
 logger = logging.getLogger(__name__)
@@ -31,6 +31,7 @@ app.include_router(upload.router)
 app.include_router(dashboard.router)
 app.include_router(ai.router)
 app.include_router(chat.router)
+app.include_router(health.router, prefix="/api/health", tags=["health"])
 
 
 @app.get("/")
@@ -38,9 +39,7 @@ async def root():
     return {"message": "AI Data Visualization Platform", "version": "2.0.0", "docs": "/docs"}
 
 
-@app.get("/health")
-async def health():
-    return {"status": "healthy", "ollama_url": settings.OLLAMA_URL}
+
 
 
 @app.exception_handler(Exception)

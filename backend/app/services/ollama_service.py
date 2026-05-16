@@ -151,7 +151,18 @@ No markdown, no explanation. ONLY JSON."""
 
         model = model or self.model_reasoning
         async with aiohttp.ClientSession() as session:
-            payload = {"model": model, "prompt": prompt, "stream": False, "options": {"temperature": 0.2, "num_predict": 4096}}
+            payload = {
+                "model": model, 
+                "prompt": prompt, 
+                "stream": False, 
+                "options": {
+                    "temperature": 0.2, 
+                    "num_predict": settings.OLLAMA_NUM_PREDICT,
+                    "num_ctx": settings.OLLAMA_NUM_CTX,
+                    "top_k": 40,
+                    "top_p": 0.9
+                }
+            }
             async with session.post(f"{self.base_url}/api/generate", json=payload, timeout=aiohttp.ClientTimeout(total=self.timeout)) as resp:
                 if resp.status == 200:
                     data = await resp.json()
@@ -172,7 +183,11 @@ No markdown, no explanation. ONLY JSON."""
                     }
                 ],
                 "stream": False,
-                "options": {"temperature": 0.2, "num_predict": 4096},
+                "options": {
+                    "temperature": 0.2, 
+                    "num_predict": settings.OLLAMA_NUM_PREDICT,
+                    "num_ctx": settings.OLLAMA_NUM_CTX,
+                },
             }
             async with session.post(
                 f"{self.base_url}/api/chat",

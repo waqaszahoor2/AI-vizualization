@@ -94,8 +94,9 @@ export default function DashboardOverview() {
         setSystemStatus({
           ollama: health.status === 'healthy' ? 'online' : 'error',
           backend: 'online',
-          models: health.models?.length || 0
-        });
+          models: health.models?.length || 0,
+          modelNames: health.models || []
+        } as any);
         setRecentDashboards(dashboards);
       } catch {
         setSystemStatus({
@@ -252,10 +253,19 @@ export default function DashboardOverview() {
               <h4 className="text-xs font-semibold text-white/30 mb-4 uppercase">Connected Models</h4>
               <div className="space-y-2">
                 {systemStatus.models > 0 ? (
-                  <div className="px-3 py-2 rounded-lg bg-white/[0.04] border border-white/5 text-xs text-brand-300 flex items-center justify-between">
-                    <span>deepseek-coder:6.7b</span>
-                    <FiCheckCircle size={12} />
-                  </div>
+                  <>
+                    {(systemStatus as any).modelNames?.map((name: string) => (
+                      <div key={name} className="px-3 py-2 rounded-lg bg-white/[0.04] border border-white/5 text-xs text-brand-300 flex items-center justify-between">
+                        <span>{name}</span>
+                        <FiCheckCircle size={12} />
+                      </div>
+                    )) || (
+                      <div className="px-3 py-2 rounded-lg bg-white/[0.04] border border-white/5 text-xs text-brand-300 flex items-center justify-between">
+                        <span>{systemStatus.models} model(s) active</span>
+                        <FiCheckCircle size={12} />
+                      </div>
+                    )}
+                  </>
                 ) : (
                   <div className="px-3 py-2 rounded-lg bg-red-500/5 border border-red-500/10 text-xs text-red-400 flex items-center gap-2">
                     <FiAlertCircle size={12} /> No models found

@@ -34,7 +34,11 @@ if not exist ".env" (
         echo SERVER_HOST=0.0.0.0
         echo SERVER_PORT=8000
         echo OLLAMA_URL=http://localhost:11434
-        echo OLLAMA_MODEL=deepseek-coder:6.7b
+        echo OLLAMA_MODEL=qwen2.5-coder:1.5b
+        echo OLLAMA_FALLBACK_MODEL=qwen2.5:1.5b
+        echo OLLAMA_VISION_MODEL=moondream
+        echo OLLAMA_NUM_PREDICT=1024
+        echo OLLAMA_NUM_CTX=4096
         echo DATABASE_URL=sqlite:///./dashboards.db
         echo SECRET_KEY=%RANDOM%%RANDOM%
     ) > .env
