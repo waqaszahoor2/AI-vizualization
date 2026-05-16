@@ -46,33 +46,44 @@ class OllamaService:
         extra_prompt: str = "",
     ) -> GeneratedDashboard:
         """
-        Use a local Ollama vision model to read a dashboard screenshot and emit a JSON dashboard spec.
-        Does not use Kimi — requires Ollama at OLLAMA_URL with a vision-capable model.
+        Create a dashboard spec from dataset + screenshot / reference layout.
+        Uses a 2-step process for reliability with local models:
+        1. Describe image with Moondream (Vision)
+        2. Generate JSON with Qwen/Deepseek (Coder)
         """
+        vision_model = getattr(settings, "OLLAMA_VISION_MODEL", "moondream")
+        
+        # Step 1: Describe the visual layout
+        desc_prompt = "Analyze this dashboard image. Describe the layout, chart types (bar, line, etc.), kpi metrics, and visual structure. Be specific about what each chart shows."
+        try:
+            description = await self._call_ollama_vision(desc_prompt, image_base64, model=vision_model)
+            logger.info(f"Vision analysis complete: {len(description)} chars")
+        except Exception as e:
+            logger.warning(f"Vision analysis failed, falling back to basic prompt: {e}")
+            description = "Reference image provided but could not be analyzed."
+
+        # Step 2: Generate JSON based on description and dataset
         cols = self._describe_columns(dataset_info.get("columns_info", []))
-        sample_str = json.dumps(sample_data[:5] if sample_data else [], indent=2, default=str)
-        vision_model = getattr(settings, "OLLAMA_VISION_MODEL", "llava:latest")
-        instructions = f"""You are a BI dashboard designer. The user attached an IMAGE of a dashboard or report layout.
+        sample_str = json.dumps(sample_data[:5] if sample_data else [], default=str)
+        
+        final_prompt = f"""Task: Create BI Dashboard JSON based on this reference layout description.
+REFERENCE LAYOUT:
+{description}
 
-Study the image: layout (KPI cards, chart types, titles), approximate grid, and visual style.
-Map what you see to THIS dataset's real column names (do not invent columns).
+DATASET: {dataset_info.get('rows_count','?')} rows
+COLUMNS: {cols}
+SAMPLE: {sample_str}
+USER NOTES: {extra_prompt or ""}
 
-DATASET: {dataset_info.get('rows_count','?')} rows, {dataset_info.get('columns_count','?')} cols
-COLUMNS:
-{cols}
-SAMPLE ROWS:
-{sample_str}
+Format: {{"title":"","summary":"","insights":[],"kpis":[],"charts":[],"layout":[]}}
+Response: JSON only."""
 
-USER NOTES: {extra_prompt or "(none)"}
-
-CHART TYPES (use these snake_case ids only): line, area, stacked_area, bar, horizontal_bar, stacked_bar, percent_stacked_bar, pie, donut, scatter, bubble, heatmap, histogram, box, waterfall, funnel, treemap, sunburst, sankey, gauge, radar, candlestick, combo, pareto, table, ribbon, map
-
-Return ONLY valid JSON (no markdown):
-{{"title":"...","summary":"...","insights":["..."],"kpis":[{{"label":"...","value":"...","format":"number"}}],"charts":[{{"id":"chart_1","type":"bar","title":"...","x_axis":"real_column","y_axis":["numeric_col"],"aggregation":"sum","description":"..."}}],"layout":["kpi_row","chart_1","chart_2"]}}
-
-Use 4-10 charts when the image shows many visuals. Match chart types to the image when possible."""
-        response = await self._call_ollama_vision(instructions, image_base64, model=vision_model)
-        return self._parse_dashboard_response(response, dataset_info)
+        try:
+            response = await self._call_ollama(final_prompt)
+            return self._parse_dashboard_response(response, dataset_info)
+        except Exception as e:
+            logger.error(f"Image dashboard JSON generation error: {e}")
+            return self._create_fallback(dataset_info, f"From Image: {extra_prompt or ''}")
 
     async def generate_dashboard(self, dataset_info: Dict, user_prompt: str, sample_data: Optional[List[Dict]] = None) -> GeneratedDashboard:
         try:
