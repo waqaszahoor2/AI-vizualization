@@ -22,12 +22,12 @@ export async function listDatasets() {
 
 // ── Dashboard ───────────────────────────────────────────
 
-export async function generateDashboard(filePath: string, prompt: string, title?: string): Promise<{ dashboard: Dashboard }> {
+export async function generateDashboard(filePath: string, prompt: string, title?: string, signal?: AbortSignal): Promise<{ dashboard: Dashboard }> {
   const { data } = await api.post('/dashboards/generate', {
     file_path: filePath,
     prompt,
     title,
-  });
+  }, { signal });
   return data;
 }
 
@@ -35,14 +35,15 @@ export async function generateDashboardFromImage(
   filePath: string,
   imageBase64: string,
   prompt = '',
-  title?: string
+  title?: string,
+  signal?: AbortSignal
 ): Promise<{ dashboard: Dashboard }> {
   const { data } = await api.post('/dashboards/generate-from-image', {
     file_path: filePath,
     image_base64: imageBase64,
     prompt,
     title,
-  });
+  }, { signal });
   return data;
 }
 

@@ -1,4 +1,5 @@
 import React, { useState, useCallback, useEffect } from 'react';
+import axios from 'axios';
 import { useDropzone } from 'react-dropzone';
 import toast from 'react-hot-toast';
 import { useStore } from '../store/useStore';
@@ -49,9 +50,17 @@ export default function WorkspacePage() {
   const [showPromptSettings, setShowPromptSettings] = useState(false);
   const [newPromptTitle, setNewPromptTitle] = useState('');
   const [newPromptBody, setNewPromptBody] = useState('');
-  const [step, setStep] = useState<'upload' | 'prompt' | 'dashboard'>( dashboard ? 'dashboard' : uploadData ? 'prompt' : 'upload');
+  const [step, setStep] = useState<'upload' | 'prompt' | 'dashboard'>(dashboard ? 'dashboard' : uploadData ? 'prompt' : 'upload');
   const [elapsedSeconds, setElapsedSeconds] = useState(0);
   const timerRef = React.useRef<NodeJS.Timeout | null>(null);
+  const abortControllerRef = React.useRef<AbortController | null>(null);
+
+  const handleStop = useCallback(() => {
+    if (abortControllerRef.current) {
+      abortControllerRef.current.abort();
+      abortControllerRef.current = null;
+    }
+  }, []);
 
   const refreshAiHealth = useCallback(() => {
     aiHealth()
@@ -84,7 +93,7 @@ export default function WorkspacePage() {
       try {
         const p = await getPresetPrompts();
         setPresets(p);
-      } catch {}
+      } catch { }
 
       setStep('prompt');
     } catch (err: any) {
@@ -131,7 +140,9 @@ export default function WorkspacePage() {
       timerRef.current = setInterval(() => {
         setElapsedSeconds(prev => prev + 1);
       }, 1000);
-      
+
+      abortControllerRef.current = new AbortController();
+
       setGenerationStep('AI is analyzing your data...');
 
       setTimeout(() => setGenerationStep('Generating chart configurations (Est. 10s)...'), 4000);
@@ -139,13 +150,18 @@ export default function WorkspacePage() {
       setTimeout(() => setGenerationStep('Finalizing visualizations...'), 20000);
 
       const result = refImage
-        ? await generateDashboardFromImage(uploadData.file_path, refImage, prompt.trim())
-        : await generateDashboard(uploadData.file_path, prompt.trim());
+        ? await generateDashboardFromImage(uploadData.file_path, refImage, prompt.trim(), undefined, abortControllerRef.current.signal)
+        : await generateDashboard(uploadData.file_path, prompt.trim(), undefined, abortControllerRef.current.signal);
+
       setDashboard(result.dashboard);
       toast.success(refImage ? 'Dashboard generated from your reference image!' : 'Dashboard generated successfully!');
       setStep('dashboard');
     } catch (err: any) {
-      toast.error(err?.response?.data?.detail || 'Generation failed');
+      if (err.name === 'CanceledError' || axios.isCancel(err)) {
+        toast('stopped');
+      } else {
+        toast.error(err?.response?.data?.detail || 'Generation failed');
+      }
     } finally {
       setIsGenerating(false);
       setGenerationStep('');
@@ -427,30 +443,39 @@ export default function WorkspacePage() {
             </div>
           )}
 
-          {/* Generate button */}
-          <button
-            onClick={handleGenerate}
-            disabled={isGenerating || !prompt.trim()}
-            className={`w-full py-4 rounded-2xl text-lg font-bold transition-all shadow-xl ${
-              isGenerating || !prompt.trim() 
-                ? 'bg-black/5 dark:bg-white/5 text-slate-400 dark:text-white/20 cursor-not-allowed' 
-                : 'bg-brand-600 dark:bg-brand-500 text-white shadow-brand-500/20 hover:shadow-brand-500/40 hover:-translate-y-1'
-            }`}
-          >
+          {/* Generate button & Loading State */}
+          <div className="w-full">
             {isGenerating ? (
-              <div className="flex flex-col items-center gap-1">
-                <div className="flex items-center justify-center gap-3">
-                  <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-                  <span className="text-base">{generationStep}</span>
+              <div className="w-full py-6 rounded-2xl bg-white dark:bg-white/[0.03] border border-black/[0.08] dark:border-white/[0.08] shadow-xl flex flex-col items-center gap-3 animate-pulse-slow">
+                <div className="flex items-center justify-center gap-4">
+                  <div className="w-6 h-6 border-3 border-brand-500/30 border-t-brand-500 rounded-full animate-spin" />
+                  <div className="flex flex-col">
+                    <span className="text-base font-bold text-slate-700 dark:text-white/90 leading-none mb-1">{generationStep}</span>
+                    <span className="text-[11px] font-medium text-slate-400 dark:text-white/40 tracking-widest uppercase">Time Elapsed: {elapsedSeconds}s</span>
+                  </div>
                 </div>
-                <div className="text-[11px] font-medium opacity-70 tracking-widest uppercase">
-                  Time Elapsed: {elapsedSeconds}s
-                </div>
+
+                <button
+                  type="button"
+                  onClick={handleStop}
+                  className="px-6 py-2 rounded-xl bg-red-500/5 hover:bg-red-500 border border-red-500/20 text-red-600 dark:text-red-400 hover:text-white text-xs font-bold uppercase tracking-wider transition-all hover:shadow-lg hover:shadow-red-500/20"
+                >
+                  Stop Generation
+                </button>
               </div>
             ) : (
-              <>{refImage ? '🖼 Generate from image + prompt' : '🚀 Generate Visualization'}</>
+              <button
+                onClick={handleGenerate}
+                disabled={!prompt.trim()}
+                className={`w-full py-4 rounded-2xl text-lg font-bold transition-all shadow-xl ${!prompt.trim()
+                    ? 'bg-black/5 dark:bg-white/5 text-slate-400 dark:text-white/20 cursor-not-allowed'
+                    : 'bg-brand-600 dark:bg-brand-500 text-white shadow-brand-500/20 hover:shadow-brand-500/40 hover:-translate-y-1'
+                  }`}
+              >
+                {refImage ? '🖼 Generate from image + prompt' : '🚀 Generate Visualization'}
+              </button>
             )}
-          </button>
+          </div>
         </div>
       )}
     </div>
