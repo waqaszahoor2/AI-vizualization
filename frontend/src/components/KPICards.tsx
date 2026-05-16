@@ -39,7 +39,7 @@ export default function KPICards({ kpis }: Props) {
           style={{ animationDelay: `${i * 0.1}s` }}
         >
           <div className="flex items-center justify-between">
-            <span className="text-xs font-medium text-white/40 uppercase tracking-wider">
+            <span className="text-xs font-medium text-slate-400 dark:text-white/40 uppercase tracking-wider">
               {kpi.label}
             </span>
             <span className="text-lg opacity-60 group-hover:opacity-100 transition-opacity">
@@ -50,7 +50,7 @@ export default function KPICards({ kpis }: Props) {
             {formatValue(kpi.value, kpi.format)}
           </div>
           {kpi.change !== undefined && (
-            <div className={`text-xs font-medium ${(kpi.change || 0) >= 0 ? 'text-emerald-400' : 'text-rose-400'}`}>
+            <div className={`text-xs font-medium ${(kpi.change || 0) >= 0 ? 'text-emerald-600 dark:text-emerald-400' : 'text-rose-600 dark:text-rose-400'}`}>
               {(kpi.change || 0) >= 0 ? '↑' : '↓'} {Math.abs(kpi.change || 0).toFixed(1)}%
             </div>
           )}

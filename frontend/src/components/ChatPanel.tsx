@@ -302,8 +302,8 @@ export default function ChatPanel({ filePath, dashboardId }: Props) {
               </svg>
             </div>
             <div>
-              <h3 className="text-sm font-semibold text-white">Dashboard AI</h3>
-              <p className="text-[10px] text-white/40">Modify your dashboard with AI</p>
+              <h3 className="text-sm font-semibold text-slate-900 dark:text-white">Dashboard AI</h3>
+              <p className="text-[10px] text-slate-500 dark:text-white/40">Modify your dashboard with AI</p>
             </div>
           </div>
           <div className="flex items-center gap-1">
@@ -311,7 +311,7 @@ export default function ChatPanel({ filePath, dashboardId }: Props) {
             <button
               onClick={() => setShowModelSelector(!showModelSelector)}
               className={`p-1.5 rounded-lg transition-all text-xs flex items-center gap-1 ${
-                showModelSelector ? 'bg-brand-500/20 text-brand-300' : 'hover:bg-white/10 text-white/40 hover:text-white'
+                showModelSelector ? 'bg-brand-500/20 text-brand-600 dark:text-brand-300' : 'hover:bg-black/5 dark:hover:bg-white/10 text-slate-400 dark:text-white/40 hover:text-slate-900 dark:hover:text-white'
               }`}
               title="Select AI Model"
             >
@@ -322,7 +322,7 @@ export default function ChatPanel({ filePath, dashboardId }: Props) {
             </button>
             <button
               onClick={() => setIsOpen(false)}
-              className="p-1.5 rounded-lg hover:bg-white/10 text-white/40 hover:text-white transition-all"
+              className="p-1.5 rounded-lg hover:bg-black/5 dark:hover:bg-white/10 text-slate-400 dark:text-white/40 hover:text-slate-900 dark:hover:text-white transition-all"
             >
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <polyline points="6 9 12 15 18 9" />
@@ -333,9 +333,9 @@ export default function ChatPanel({ filePath, dashboardId }: Props) {
 
         {/* Model Selector Dropdown */}
         {showModelSelector && (
-          <div className="model-selector-panel">
+          <div className="model-selector-panel border-b border-black/5 dark:border-white/5 bg-black/[0.02] dark:bg-white/[0.02]">
             <div className="flex items-center justify-between mb-2 px-1">
-              <span className="text-[10px] text-white/30 uppercase tracking-wider font-medium">Select AI Model</span>
+              <span className="text-[10px] text-slate-400 dark:text-white/30 uppercase tracking-wider font-medium">Select AI Model</span>
               {modelsLoading && (
                 <div className="w-3 h-3 border-2 border-brand-500/30 border-t-brand-500 rounded-full animate-spin" />
               )}
@@ -351,28 +351,28 @@ export default function ChatPanel({ filePath, dashboardId }: Props) {
                       toast.success(`Model switched to ${model}`);
                     }}
                     className={`model-item ${
-                      selectedModel === model ? 'model-item-active' : ''
+                      selectedModel === model ? 'model-item-active bg-brand-500/10 text-brand-600 dark:text-brand-300' : 'text-slate-600 dark:text-white/70 hover:bg-black/5 dark:hover:bg-white/5'
                     }`}
                   >
                     <div className="flex items-center gap-2">
                       <div className={`w-2 h-2 rounded-full ${
-                        selectedModel === model ? 'bg-brand-400' : 'bg-white/20'
+                        selectedModel === model ? 'bg-brand-500' : 'bg-slate-300 dark:bg-white/20'
                       }`} />
                       <span className="text-xs font-medium">{model}</span>
                     </div>
                     {model === defaultModel && (
-                      <span className="text-[9px] px-1.5 py-0.5 rounded-full bg-brand-500/20 text-brand-300">default</span>
+                      <span className="text-[9px] px-1.5 py-0.5 rounded-full bg-brand-500/10 text-brand-600 dark:text-brand-300">default</span>
                     )}
                   </button>
                 ))}
               </div>
             ) : (
               <div className="py-2 px-1">
-                <p className="text-xs text-white/40 text-center mb-3">
+                <p className="text-xs text-slate-500 dark:text-white/40 text-center mb-3">
                   {modelsLoading ? 'Loading models...' : 'No models found. Is Ollama running?'}
                 </p>
-                <div className="border-t border-white/10 pt-3 mt-1">
-                  <p className="text-[10px] text-brand-300 font-medium mb-1.5 uppercase tracking-wider">Use Moonshot (Kimi) Instead</p>
+                <div className="border-t border-black/5 dark:border-white/10 pt-3 mt-1">
+                  <p className="text-[10px] text-brand-600 dark:text-brand-300 font-medium mb-1.5 uppercase tracking-wider">Use Moonshot (Kimi) Instead</p>
                   <div className="flex gap-1.5">
                     <input 
                       type="password"
@@ -380,12 +380,12 @@ export default function ChatPanel({ filePath, dashboardId }: Props) {
                       value={kimiKeyInput}
                       onChange={e => setKimiKeyInput(e.target.value)}
                       onKeyDown={e => e.key === 'Enter' && handleSetKimiKey()}
-                      className="flex-1 bg-[#121212] border border-white/10 rounded px-2.5 py-1.5 text-xs text-white focus:outline-none focus:border-brand-500 placeholder-white/20 transition-colors"
+                      className="flex-1 bg-black/5 dark:bg-[#121212] border border-black/10 dark:border-white/10 rounded px-2.5 py-1.5 text-xs text-slate-900 dark:text-white focus:outline-none focus:border-brand-500 placeholder-slate-400 dark:placeholder-white/20 transition-colors"
                     />
                     <button 
                       onClick={handleSetKimiKey}
                       disabled={isSubmittingKey || !kimiKeyInput.trim()}
-                      className="bg-brand-500/20 text-brand-300 hover:bg-brand-500 hover:text-white px-3 py-1.5 rounded text-xs font-medium disabled:opacity-50 transition-colors"
+                      className="bg-brand-500/20 text-brand-600 dark:text-brand-300 hover:bg-brand-500 hover:text-white px-3 py-1.5 rounded text-xs font-medium disabled:opacity-50 transition-colors"
                     >
                       {isSubmittingKey ? '...' : 'Save'}
                     </button>
@@ -402,14 +402,14 @@ export default function ChatPanel({ filePath, dashboardId }: Props) {
           {messages.length === 0 && (
             <div className="chat-welcome">
               <div className="chat-welcome-icon">✨</div>
-              <h4 className="text-sm font-semibold text-white mb-1">Dashboard AI Assistant</h4>
-              <p className="text-xs text-white/40 leading-relaxed">
+              <h4 className="text-sm font-semibold text-slate-900 dark:text-white mb-1">Dashboard AI Assistant</h4>
+              <p className="text-xs text-slate-500 dark:text-white/40 leading-relaxed">
                 Ask me to add charts, modify visualizations, add KPIs, or change your dashboard layout.
               </p>
               {selectedModel && (
                 <div className="mt-2 flex items-center gap-1.5 justify-center">
-                  <div className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                  <span className="text-[10px] text-white/30">Using {getModelShortName(selectedModel)}</span>
+                  <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                  <span className="text-[10px] text-slate-400 dark:text-white/30">Using {getModelShortName(selectedModel)}</span>
                 </div>
               )}
             </div>
@@ -461,13 +461,13 @@ export default function ChatPanel({ filePath, dashboardId }: Props) {
         {/* Suggestions */}
         {showSuggestions && suggestions.length > 0 && messages.length === 0 && (
           <div className="chat-suggestions">
-            <p className="text-[10px] text-white/30 uppercase tracking-wider font-medium mb-2 px-1">Quick Actions</p>
+            <p className="text-[10px] text-slate-400 dark:text-white/30 uppercase tracking-wider font-medium mb-2 px-1">Quick Actions</p>
             <div className="flex flex-col gap-1.5">
               {suggestions.slice(0, 5).map((s, i) => (
                 <button
                   key={i}
                   onClick={() => handleSend(s)}
-                  className="chat-suggestion-btn"
+                  className="chat-suggestion-btn text-slate-600 dark:text-white/70 hover:bg-black/5 dark:hover:bg-white/5"
                 >
                   <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="shrink-0 opacity-50">
                     <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
@@ -484,11 +484,11 @@ export default function ChatPanel({ filePath, dashboardId }: Props) {
           {/* Active model indicator */}
           {selectedModel && (
             <div className="flex items-center gap-1.5 px-3 pb-1">
-              <div className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
-              <span className="text-[10px] text-white/25">{getModelShortName(selectedModel)}</span>
+              <div className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
+              <span className="text-[10px] text-slate-400 dark:text-white/25">{getModelShortName(selectedModel)}</span>
               <button
                 onClick={() => setShowModelSelector(true)}
-                className="text-[10px] text-brand-400/60 hover:text-brand-300 ml-auto"
+                className="text-[10px] text-brand-600 dark:text-brand-400/60 hover:text-brand-500 dark:hover:text-brand-300 ml-auto"
               >
                 change
               </button>

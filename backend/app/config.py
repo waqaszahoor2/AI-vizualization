@@ -28,8 +28,8 @@ class Settings(BaseSettings):
     OLLAMA_MODEL_CODER: str = "qwen2.5-coder:1.5b"
     OLLAMA_VISION_MODEL: str = "moondream"
     OLLAMA_TIMEOUT: int = 300
-    OLLAMA_NUM_PREDICT: int = 1024  # Reduced for speed
-    OLLAMA_NUM_CTX: int = 4096
+    OLLAMA_NUM_PREDICT: int = 768  # Optimized for speed
+    OLLAMA_NUM_CTX: int = 2048     # Reduced context for faster pre-fill
 
     # ── Kimi (Moonshot AI) ──────────────────────────────────
     KIMI_API_KEY: str = "sk-DMIByi6RiCN4yLfEOhrS2s67jItjsVZwho4xEZ5sayID2iUY"

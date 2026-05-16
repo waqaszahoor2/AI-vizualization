@@ -6,11 +6,22 @@ import WorkspacePage from './pages/WorkspacePage';
 import SharedPage from './pages/SharedPage';
 import DashboardOverview from './pages/DashboardOverview';
 import Navbar from './components/Navbar';
+import { useStore } from './store/useStore';
 
 export default function App() {
+  const { theme } = useStore();
+
+  React.useEffect(() => {
+    if (theme === 'dark') {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+  }, [theme]);
+
   return (
     <BrowserRouter>
-      <div className="min-h-screen bg-surface-900 text-white">
+      <div className="min-h-screen bg-[var(--bg-color)] text-[var(--text-color)] transition-colors duration-300">
         <Navbar />
         <Routes>
           <Route path="/" element={<LandingPage />} />
@@ -19,7 +30,12 @@ export default function App() {
           <Route path="/shared/:token" element={<SharedPage />} />
         </Routes>
         <Toaster position="bottom-right" toastOptions={{
-          style: { background: '#1e293b', color: '#e2e8f0', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '12px' },
+          style: { 
+            background: theme === 'dark' ? '#1e293b' : '#ffffff', 
+            color: theme === 'dark' ? '#e2e8f0' : '#0f172a', 
+            border: theme === 'dark' ? '1px solid rgba(255,255,255,0.1)' : '1px solid rgba(0,0,0,0.1)', 
+            borderRadius: '12px' 
+          },
         }} />
       </div>
     </BrowserRouter>

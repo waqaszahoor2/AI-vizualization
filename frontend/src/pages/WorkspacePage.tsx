@@ -160,12 +160,12 @@ export default function WorkspacePage() {
           const active = stepIndex <= currentIdx;
           return (
             <React.Fragment key={label}>
-              {i > 0 && <div className={`h-px w-12 ${active ? 'bg-brand-500' : 'bg-white/10'} transition-colors`} />}
+              {i > 0 && <div className={`h-px w-12 ${active ? 'bg-brand-500' : 'bg-black/10 dark:bg-white/10'} transition-colors`} />}
               <div className="flex items-center gap-2">
-                <div className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-semibold transition-all ${active ? 'bg-brand-500 text-white' : 'bg-white/[0.06] text-white/30'}`}>
+                <div className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-semibold transition-all ${active ? 'bg-brand-500 text-white' : 'bg-black/[0.06] dark:bg-white/[0.06] text-slate-400 dark:text-white/30'}`}>
                   {stepIndex}
                 </div>
-                <span className={`text-sm hidden sm:inline ${active ? 'text-white' : 'text-white/30'}`}>{label}</span>
+                <span className={`text-sm hidden sm:inline ${active ? 'text-slate-900 dark:text-white' : 'text-slate-400 dark:text-white/30'}`}>{label}</span>
               </div>
             </React.Fragment>
           );
@@ -176,7 +176,7 @@ export default function WorkspacePage() {
       {step === 'upload' && (
         <div className="animate-fade-in">
           <h1 className="text-3xl font-bold text-center mb-2">Upload Your Dataset</h1>
-          <p className="text-white/40 text-center mb-10">Drag and drop a CSV or Excel file to begin</p>
+          <p className="text-slate-500 dark:text-white/40 text-center mb-10">Drag and drop a CSV or Excel file to begin</p>
 
           <div
             {...getRootProps()}
@@ -186,7 +186,7 @@ export default function WorkspacePage() {
             {isGenerating ? (
               <div>
                 <div className="w-12 h-12 mx-auto mb-4 border-4 border-brand-500/30 border-t-brand-500 rounded-full animate-spin" />
-                <p className="text-white/60">{generationStep}</p>
+                <p className="text-slate-600 dark:text-white/60">{generationStep}</p>
               </div>
             ) : (
               <>
@@ -194,7 +194,7 @@ export default function WorkspacePage() {
                 <p className="text-lg font-medium mb-2">
                   {isDragActive ? 'Drop your file here' : 'Drag & drop your dataset'}
                 </p>
-                <p className="text-white/40 text-sm">Supports CSV, XLSX, XLS — up to 50MB</p>
+                <p className="text-slate-400 dark:text-white/40 text-sm">Supports CSV, XLSX, XLS — up to 50MB</p>
               </>
             )}
           </div>
@@ -205,13 +205,13 @@ export default function WorkspacePage() {
       {step === 'prompt' && uploadData && (
         <div className="animate-fade-in">
           <h1 className="text-3xl font-bold text-center mb-2">Describe Your Dashboard</h1>
-          <p className="text-white/40 text-center mb-8">Tell AI what kind of dashboard you want — or match a screenshot (Ollama vision)</p>
+          <p className="text-slate-500 dark:text-white/40 text-center mb-8">Tell AI what kind of dashboard you want — or match a screenshot (Ollama vision)</p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3 mb-6">
-            <div className={`text-xs px-4 py-2 rounded-xl border ${ollamaStatus.includes('Connected') ? 'border-emerald-500/30 text-emerald-300 bg-emerald-500/5' : 'border-amber-500/20 text-amber-200/80 bg-amber-500/5'}`}>
+            <div className={`text-xs px-4 py-2 rounded-xl border ${ollamaStatus.includes('Connected') ? 'border-emerald-500/30 text-emerald-600 dark:text-emerald-300 bg-emerald-500/5' : 'border-amber-500/20 text-amber-600 dark:text-amber-200/80 bg-amber-500/5'}`}>
               AI: {ollamaStatus || 'Checking…'}
             </div>
-            <button type="button" onClick={refreshAiHealth} className="text-xs text-white/40 hover:text-white/70 underline">
+            <button type="button" onClick={refreshAiHealth} className="text-xs text-slate-400 dark:text-white/40 hover:text-slate-700 dark:hover:text-white/70 underline">
               Refresh status
             </button>
             <button
@@ -225,15 +225,14 @@ export default function WorkspacePage() {
 
           {showPromptSettings && (
             <div className="glass-card p-5 mb-8 space-y-4 max-w-3xl mx-auto">
-              <p className="text-sm text-white/50">
+              <p className="text-sm text-slate-500 dark:text-white/50">
                 Save reusable prompts here. Image-based layouts need{' '}
-                <strong className="text-white/70">Ollama</strong> with a vision model (e.g. <code className="text-brand-300">llava</code>).
-                Pull it with: <code className="text-white/60 text-xs">ollama pull llava</code>
+                <strong className="text-slate-700 dark:text-white/70">Ollama</strong> with a vision model (e.g. <code className="text-brand-600 dark:text-brand-300">llava</code>).
               </p>
               <div className="flex flex-wrap gap-2">
                 {customPrompts.map(entry => (
-                  <div key={entry.id} className="flex items-center gap-1 px-3 py-1.5 rounded-lg bg-white/[0.04] border border-white/10 text-xs">
-                    <button type="button" className="text-brand-300 hover:underline" onClick={() => setPrompt(entry.prompt)}>
+                  <div key={entry.id} className="flex items-center gap-1 px-3 py-1.5 rounded-lg bg-black/[0.04] dark:bg-white/[0.04] border border-black/10 dark:border-white/10 text-xs">
+                    <button type="button" className="text-brand-600 dark:text-brand-300 hover:underline" onClick={() => setPrompt(entry.prompt)}>
                       {entry.title}
                     </button>
                     <button
@@ -319,12 +318,12 @@ export default function WorkspacePage() {
                 <div className="text-2xl">📊</div>
                 <div>
                   <p className="font-semibold">{uploadData.file_name}</p>
-                  <p className="text-sm text-white/40">
+                  <p className="text-sm text-slate-500 dark:text-white/40">
                     {uploadData.metadata.rows_count.toLocaleString()} rows × {uploadData.metadata.columns_count} columns
                   </p>
                 </div>
               </div>
-              <button onClick={() => { setUploadData(null); setStep('upload'); }} className="text-white/30 hover:text-white/60 text-sm">
+              <button onClick={() => { setUploadData(null); setStep('upload'); }} className="text-slate-400 dark:text-white/30 hover:text-slate-900 dark:hover:text-white/60 text-sm">
                 Change file
               </button>
             </div>
@@ -332,12 +331,12 @@ export default function WorkspacePage() {
             {/* Column preview */}
             <div className="mt-4 flex flex-wrap gap-2">
               {uploadData.metadata.columns_info.slice(0, 12).map(col => (
-                <span key={col.name} className={`px-3 py-1 rounded-full text-xs border ${col.is_numeric ? 'border-emerald-500/20 text-emerald-400 bg-emerald-500/5' : col.is_datetime ? 'border-blue-500/20 text-blue-400 bg-blue-500/5' : 'border-purple-500/20 text-purple-400 bg-purple-500/5'}`}>
+                <span key={col.name} className={`px-3 py-1 rounded-full text-xs border ${col.is_numeric ? 'border-emerald-500/20 text-emerald-600 dark:text-emerald-400 bg-emerald-500/5' : col.is_datetime ? 'border-blue-500/20 text-blue-600 dark:text-blue-400 bg-blue-500/5' : 'border-purple-500/20 text-purple-600 dark:text-purple-400 bg-purple-500/5'}`}>
                   {col.name}
                 </span>
               ))}
               {uploadData.metadata.columns_info.length > 12 && (
-                <span className="px-3 py-1 rounded-full text-xs border border-white/10 text-white/40">
+                <span className="px-3 py-1 rounded-full text-xs border border-black/10 dark:border-white/10 text-slate-400 dark:text-white/40">
                   +{uploadData.metadata.columns_info.length - 12} more
                 </span>
               )}
@@ -346,8 +345,8 @@ export default function WorkspacePage() {
 
           {/* Reference dashboard image (optional) */}
           <div className="glass-card p-5 mb-6 max-w-3xl mx-auto">
-            <p className="text-sm text-white/50 mb-2">Reference layout (optional)</p>
-            <p className="text-xs text-white/30 mb-3">
+            <p className="text-sm text-slate-500 dark:text-white/50 mb-2">Reference layout (optional)</p>
+            <p className="text-xs text-slate-400 dark:text-white/30 mb-3">
               Upload a screenshot of a dashboard you like. The model will try to recreate a similar layout using your dataset columns (requires Ollama + vision model).
             </p>
             <div className="flex flex-wrap items-center gap-4">
@@ -368,8 +367,8 @@ export default function WorkspacePage() {
               </label>
               {refImage && (
                 <>
-                  <img src={refImage} alt="Reference" className="h-16 rounded-lg border border-white/10 object-cover" />
-                  <button type="button" className="text-xs text-white/40 hover:text-white" onClick={() => setRefImage(null)}>
+                  <img src={refImage} alt="Reference" className="h-16 rounded-lg border border-black/10 dark:border-white/10 object-cover" />
+                  <button type="button" className="text-xs text-slate-400 dark:text-white hover:text-slate-900 dark:hover:text-white" onClick={() => setRefImage(null)}>
                     Remove image
                   </button>
                 </>
@@ -391,10 +390,10 @@ export default function WorkspacePage() {
           {/* Preset prompts */}
           {presets.length > 0 && (
             <div className="mb-8">
-              <p className="text-sm text-white/40 mb-3">Quick prompts:</p>
+              <p className="text-sm text-slate-500 dark:text-white/40 mb-3">Quick prompts:</p>
               <div className="flex flex-wrap gap-2">
                 {presets.map(p => (
-                  <button key={p.id} type="button" onClick={() => setPrompt(p.prompt)} className="px-4 py-2 rounded-xl bg-white/[0.04] border border-white/[0.06] text-sm text-white/60 hover:bg-brand-500/10 hover:border-brand-500/20 hover:text-brand-300 transition-all">
+                  <button key={p.id} type="button" onClick={() => setPrompt(p.prompt)} className="px-4 py-2 rounded-xl bg-black/[0.04] dark:bg-white/[0.04] border border-black/[0.06] dark:border-white/[0.06] text-sm text-slate-600 dark:text-white/60 hover:bg-brand-500/10 hover:border-brand-500/20 hover:text-brand-600 dark:hover:text-brand-300 transition-all">
                     {p.title}
                   </button>
                 ))}
@@ -406,15 +405,19 @@ export default function WorkspacePage() {
           <button
             onClick={handleGenerate}
             disabled={isGenerating || !prompt.trim()}
-            className={`btn-primary w-full text-lg py-4 flex items-center justify-center gap-3 ${isGenerating || !prompt.trim() ? 'opacity-50 cursor-not-allowed' : ''}`}
+            className={`w-full py-4 rounded-2xl text-lg font-bold transition-all shadow-xl ${
+              isGenerating || !prompt.trim() 
+                ? 'bg-black/5 dark:bg-white/5 text-slate-400 dark:text-white/20 cursor-not-allowed' 
+                : 'bg-brand-600 dark:bg-brand-500 text-white shadow-brand-500/20 hover:shadow-brand-500/40 hover:-translate-y-1'
+            }`}
           >
             {isGenerating ? (
-              <>
+              <div className="flex items-center justify-center gap-3">
                 <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
                 {generationStep}
-              </>
+              </div>
             ) : (
-              <>{refImage ? '🖼 Generate from image + prompt' : '✨ Generate Dashboard'}</>
+              <>{refImage ? '🖼 Generate from image + prompt' : '🚀 Generate Visualization'}</>
             )}
           </button>
         </div>

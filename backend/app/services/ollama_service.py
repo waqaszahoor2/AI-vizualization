@@ -105,17 +105,16 @@ Use 4-10 charts when the image shows many visuals. Match chart types to the imag
     def _build_dashboard_prompt(self, info: Dict, prompt: str, sample: Optional[List[Dict]]) -> str:
         cols = self._describe_columns(info.get("columns_info", []))
         sample_str = json.dumps(sample[:3] if sample else [], indent=2, default=str)
-        return f"""You are a BI Dashboard Designer. Create a dashboard spec.
+        return f"""You are a BI Expert. Create a dashboard spec in JSON.
 DATASET: {info.get('rows_count','?')} rows, {info.get('columns_count','?')} cols
 COLUMNS:
 {cols}
 SAMPLE:
 {sample_str}
 REQUEST: {prompt}
-CHART TYPES (Power BI–style; use snake_case): line, area, stacked_area, bar, horizontal_bar, stacked_bar, percent_stacked_bar, pie, donut, scatter, bubble, heatmap, histogram, box, waterfall, funnel, treemap, sunburst, sankey, gauge, radar, candlestick, combo, pareto, table, ribbon, map
-Return ONLY valid JSON:
-{{"title":"...","summary":"...","insights":["..."],"kpis":[{{"label":"...","value":"...","format":"number"}}],"charts":[{{"id":"chart_1","type":"bar","title":"...","x_axis":"col","y_axis":["col"],"aggregation":"sum","description":"..."}}],"layout":["kpi_row","chart_1"]}}
-No markdown, no explanation. ONLY JSON."""
+CHART TYPES: line, area, stacked_area, bar, horizontal_bar, stacked_bar, percent_stacked_bar, pie, donut, scatter, bubble, heatmap, histogram, box, waterfall, funnel, treemap, sunburst, sankey, gauge, radar, candlestick, combo, pareto, table, ribbon, map
+Return ONLY JSON: {{"title":"","summary":"","insights":[],"kpis":[],"charts":[],"layout":[]}}
+No markdown, no talk. ONLY JSON."""
 
     def _describe_columns(self, cols: List[Dict]) -> str:
         lines = []

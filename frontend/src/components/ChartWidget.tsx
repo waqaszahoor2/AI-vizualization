@@ -50,7 +50,7 @@ function generateAutoTitle(chart: ChartConfig): string {
 export default function ChartWidget({ chart, filePath, readOnly, allowEditing = true }: Props) {
   const [data, setData] = useState<ChartData | null>(null);
   const [loading, setLoading] = useState(true);
-  const { selectedChartId, setSelectedChartId, dashboardFilters, setDashboardFilters } = useStore();
+  const { selectedChartId, setSelectedChartId, dashboardFilters, setDashboardFilters, theme } = useStore();
   const chartRef = useRef<any>(null);
 
   const isSelected = selectedChartId === chart.id;
@@ -150,17 +150,17 @@ export default function ChartWidget({ chart, filePath, readOnly, allowEditing = 
       <div className="flex items-center justify-between mb-4 px-2 flex-shrink-0">
         <div className="flex-1 min-w-0">
           <div className="flex items-center gap-2">
-            <h3 className="text-sm font-bold text-white truncate" title={displayTitle}>
+            <h3 className="text-sm font-bold text-slate-900 dark:text-white truncate" title={displayTitle}>
               {displayTitle}
             </h3>
             {activeFilter && (
-              <div className="flex items-center gap-1 px-1.5 py-0.5 rounded-md bg-brand-500/20 border border-brand-500/30 text-[9px] font-bold text-brand-400 animate-pulse">
+              <div className="flex items-center gap-1 px-1.5 py-0.5 rounded-md bg-brand-500/20 border border-brand-500/30 text-[9px] font-bold text-brand-600 dark:text-brand-400 animate-pulse">
                 <FiFilter size={8} /> FILTERED
               </div>
             )}
           </div>
           {chart.description && (
-            <p className="text-[10px] text-white/30 mt-0.5 truncate uppercase tracking-wider">{chart.description}</p>
+            <p className="text-[10px] text-slate-400 dark:text-white/30 mt-0.5 truncate uppercase tracking-wider">{chart.description}</p>
           )}
         </div>
       </div>
@@ -171,22 +171,22 @@ export default function ChartWidget({ chart, filePath, readOnly, allowEditing = 
             <div className="w-8 h-8 border-3 border-brand-500/30 border-t-brand-500 rounded-full animate-spin" />
           </div>
         ) : isTable && data?.categories ? (
-          <div className="h-full overflow-auto rounded-2xl border border-white/5 bg-white/[0.02]">
-            <table className="w-full text-xs text-left text-white/80">
+          <div className="h-full overflow-auto rounded-2xl border border-black/5 dark:border-white/5 bg-black/2 dark:bg-white/[0.02]">
+            <table className="w-full text-xs text-left text-slate-700 dark:text-white/80">
               <thead>
-                <tr className="border-b border-white/10 bg-white/[0.04]">
-                  <th className="p-3 font-bold text-brand-400 uppercase tracking-widest">{chart.x_axis || 'Category'}</th>
+                <tr className="border-b border-black/5 dark:border-white/10 bg-black/5 dark:bg-white/[0.04]">
+                  <th className="p-3 font-bold text-brand-600 dark:text-brand-400 uppercase tracking-widest">{chart.x_axis || 'Category'}</th>
                   {Object.keys(data.series).map(k => (
-                    <th key={k} className="p-3 font-bold text-brand-400 uppercase tracking-widest">{k}</th>
+                    <th key={k} className="p-3 font-bold text-brand-600 dark:text-brand-400 uppercase tracking-widest">{k}</th>
                   ))}
                 </tr>
               </thead>
               <tbody>
                 {data.categories.map((cat, i) => (
-                  <tr key={i} className="border-b border-white/[0.04] hover:bg-white/[0.04] transition-colors">
-                    <td className="p-3 text-white/70 font-medium">{cat}</td>
+                  <tr key={i} className="border-b border-black/[0.04] dark:border-white/[0.04] hover:bg-black/[0.02] dark:hover:bg-white/[0.04] transition-colors">
+                    <td className="p-3 text-slate-600 dark:text-white/70 font-medium">{cat}</td>
                     {Object.keys(data.series).map(k => (
-                      <td key={k} className="p-3 tabular-nums text-white/90">{data.series[k][i] ?? '—'}</td>
+                      <td key={k} className="p-3 tabular-nums text-slate-900 dark:text-white/90">{data.series[k][i] ?? '—'}</td>
                     ))}
                   </tr>
                 ))}
@@ -198,6 +198,7 @@ export default function ChartWidget({ chart, filePath, readOnly, allowEditing = 
             ref={chartRef}
             option={option}
             onEvents={onEvents}
+            theme={theme}
             style={{ height: '100%', width: '100%' }}
             opts={{ renderer: 'canvas' }}
             notMerge
@@ -206,13 +207,13 @@ export default function ChartWidget({ chart, filePath, readOnly, allowEditing = 
         )}
       </div>
 
-      <div className="flex items-center justify-between px-2 mt-4 flex-shrink-0 border-t border-white/5 pt-3">
+      <div className="flex items-center justify-between px-2 mt-4 flex-shrink-0 border-t border-black/5 dark:border-white/5 pt-3">
         <div className="flex items-center gap-2">
-          <span className="text-[10px] font-bold text-brand-400 uppercase tracking-widest bg-brand-500/10 px-2 py-0.5 rounded-md">
+          <span className="text-[10px] font-bold text-brand-600 dark:text-brand-400 uppercase tracking-widest bg-brand-500/10 px-2 py-0.5 rounded-md">
             {chart.type.replace(/_/g, ' ')}
           </span>
           {data?.total_rows !== undefined && (
-            <span className="text-[10px] text-white/20 font-medium">{data.total_rows.toLocaleString()} records</span>
+            <span className="text-[10px] text-slate-400 dark:text-white/20 font-medium">{data.total_rows.toLocaleString()} records</span>
           )}
         </div>
         
@@ -222,7 +223,7 @@ export default function ChartWidget({ chart, filePath, readOnly, allowEditing = 
               e.stopPropagation();
               setSelectedChartId(chart.id);
             }}
-            className="text-[10px] font-bold text-white/30 hover:text-white uppercase tracking-widest transition-colors"
+            className="text-[10px] font-bold text-slate-400 dark:text-white/30 hover:text-slate-900 dark:hover:text-white uppercase tracking-widest transition-colors"
           >
             Edit Format
           </button>

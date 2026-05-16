@@ -30,15 +30,13 @@ export default function LandingPage() {
         </div>
 
         <div className="relative max-w-[1200px] mx-auto px-6 text-center">
-
-
           <h1 className="text-5xl md:text-7xl font-extrabold leading-tight mb-6 animate-slide-up">
             Turn Data Into{' '}
             <span className="gradient-text">Stunning Dashboards</span>
             <br />With AI
           </h1>
 
-          <p className="text-lg md:text-xl text-white/50 max-w-2xl mx-auto mb-10 leading-relaxed animate-slide-up" style={{ animationDelay: '0.1s' }}>
+          <p className="text-lg md:text-xl text-slate-500 dark:text-white/50 max-w-2xl mx-auto mb-10 leading-relaxed animate-slide-up" style={{ animationDelay: '0.1s' }}>
             Upload your data, describe what you want, and let AI generate
             interactive Power BI-style dashboards — all running locally for maximum privacy.
           </p>
@@ -57,7 +55,7 @@ export default function LandingPage() {
             {[['25+', 'Chart Types'], ['< 30s', 'Generation'], ['100%', 'Private'], ['0', 'API Costs']].map(([val, label]) => (
               <div key={label} className="text-center">
                 <div className="text-2xl md:text-3xl font-bold gradient-text">{val}</div>
-                <div className="text-sm text-white/40 mt-1">{label}</div>
+                <div className="text-sm text-slate-400 dark:text-white/40 mt-1">{label}</div>
               </div>
             ))}
           </div>
@@ -70,7 +68,7 @@ export default function LandingPage() {
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-4">
             Everything You Need for <span className="gradient-text">Data Intelligence</span>
           </h2>
-          <p className="text-white/40 text-center mb-16 max-w-xl mx-auto">
+          <p className="text-slate-500 dark:text-white/40 text-center mb-16 max-w-xl mx-auto">
             Enterprise-grade features powered by local AI models
           </p>
 
@@ -79,7 +77,7 @@ export default function LandingPage() {
               <div key={i} className="glass-card p-8 hover:border-brand-500/20 transition-all duration-500 group">
                 <div className="text-4xl mb-4 group-hover:scale-110 transition-transform duration-300">{f.icon}</div>
                 <h3 className="text-lg font-semibold mb-2">{f.title}</h3>
-                <p className="text-white/40 text-sm leading-relaxed">{f.desc}</p>
+                <p className="text-slate-500 dark:text-white/40 text-sm leading-relaxed">{f.desc}</p>
               </div>
             ))}
           </div>
@@ -93,13 +91,13 @@ export default function LandingPage() {
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
             <span className="gradient-text">25+ Visualization</span> Types
           </h2>
-          <p className="text-white/40 mb-12 max-w-xl mx-auto">
+          <p className="text-slate-500 dark:text-white/40 mb-12 max-w-xl mx-auto">
             AI automatically selects the best chart type for your data
           </p>
 
           <div className="flex flex-wrap justify-center gap-3">
             {chartTypes.map((t, i) => (
-              <span key={i} className="px-4 py-2 rounded-full bg-white/[0.04] border border-white/[0.06] text-sm text-white/60 hover:bg-brand-500/10 hover:border-brand-500/20 hover:text-brand-300 transition-all duration-300 cursor-default">
+              <span key={i} className="px-4 py-2 rounded-full bg-black/5 dark:bg-white/[0.04] border border-black/10 dark:border-white/[0.06] text-sm text-slate-600 dark:text-white/60 hover:bg-brand-500/10 hover:border-brand-500/20 hover:text-brand-600 dark:hover:text-brand-300 transition-all duration-300 cursor-default">
                 {t}
               </span>
             ))}
@@ -113,7 +111,7 @@ export default function LandingPage() {
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
             Ready to <span className="gradient-text">Transform Your Data</span>?
           </h2>
-          <p className="text-white/40 mb-8">
+          <p className="text-slate-500 dark:text-white/40 mb-8">
             Upload your CSV or Excel file and generate a professional dashboard in seconds.
           </p>
           <Link to="/workspace" className="btn-primary text-lg px-10 py-4 inline-block">
@@ -123,13 +121,13 @@ export default function LandingPage() {
       </section>
 
       {/* Footer */}
-      <footer className="border-t border-white/[0.06] py-12 px-6">
+      <footer className="border-t border-black/[0.06] dark:border-white/[0.06] py-12 px-6">
         <div className="max-w-[1200px] mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
           <div className="flex items-center gap-2">
-            <div className="w-7 h-7 rounded-lg bg-gradient-to-br from-brand-500 to-purple-500 flex items-center justify-center text-sm font-bold">✦</div>
+            <div className="w-7 h-7 rounded-lg bg-gradient-to-br from-brand-500 to-purple-500 flex items-center justify-center text-sm font-bold text-white">✦</div>
             <span className="font-semibold gradient-text">AI Viz</span>
           </div>
-          <p className="text-white/30 text-sm">© 2024 AI Data Visualization Platform. Built with ❤️ using Ollama + ECharts.</p>
+          <p className="text-slate-400 dark:text-white/30 text-sm">© 2024 AI Data Visualization Platform. Built with ❤️ using Ollama + ECharts.</p>
         </div>
       </footer>
     </div>
