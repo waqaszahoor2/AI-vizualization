@@ -132,11 +132,13 @@ export default function DashboardView({ onBack, readOnly }: Props) {
                 <FiClock size={10} /> 
                 Generated {new Date(dashboard.created_at).toLocaleDateString()} • {new Date(dashboard.created_at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })} • {
                   (() => {
+                    const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
                     const offset = new Date().getTimezoneOffset();
                     const absOffset = Math.abs(offset);
                     const offsetHours = Math.floor(absOffset / 60);
                     const offsetMins = absOffset % 60;
-                    return `GMT${offset <= 0 ? '+' : '-'}${offsetHours}${offsetMins > 0 ? `:${offsetMins}` : ''}`;
+                    const offStr = `GMT${offset <= 0 ? '+' : '-'}${offsetHours}${offsetMins > 0 ? `:${offsetMins}` : ''}`;
+                    return `${tz} (${offStr})`;
                   })()
                 }
               </div>

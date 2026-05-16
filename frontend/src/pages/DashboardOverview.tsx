@@ -123,8 +123,10 @@ export default function DashboardOverview() {
         </div>
         <div className="flex items-center gap-6">
           <div className="hidden md:flex flex-col items-end border-r border-black/10 dark:border-white/10 pr-6">
-            <div className="text-xl font-bold tracking-tight text-slate-700 dark:text-white/90">{timeString}</div>
-            <div className="text-[10px] uppercase font-bold text-brand-600 dark:text-brand-400 tracking-widest">{offsetString}</div>
+            <div className="text-xl font-bold tracking-tight text-slate-700 dark:text-white/90 leading-none">{timeString}</div>
+            <div className="text-[10px] uppercase font-bold text-brand-600 dark:text-brand-400 tracking-widest mt-1">
+              {timeZone} ({offsetString})
+            </div>
           </div>
           <div className="flex items-center gap-3">
             <Link to="/workspace" className="btn-primary flex items-center gap-2 px-6 py-3">

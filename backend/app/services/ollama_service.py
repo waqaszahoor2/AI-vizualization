@@ -155,11 +155,11 @@ No markdown, no talk. ONLY JSON."""
                 "prompt": prompt, 
                 "stream": False, 
                 "options": {
-                    "temperature": 0.2, 
+                    "temperature": 0.0, 
                     "num_predict": settings.OLLAMA_NUM_PREDICT,
                     "num_ctx": settings.OLLAMA_NUM_CTX,
-                    "top_k": 40,
-                    "top_p": 0.9
+                    "top_k": 20,
+                    "top_p": 0.8
                 }
             }
             async with session.post(f"{self.base_url}/api/generate", json=payload, timeout=aiohttp.ClientTimeout(total=self.timeout)) as resp:
