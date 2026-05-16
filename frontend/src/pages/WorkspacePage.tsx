@@ -183,6 +183,21 @@ export default function WorkspacePage() {
         })}
       </div>
 
+      {/* Features Ribbon */}
+      <div className="max-w-4xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-4 mb-10">
+        {[
+          { icon: '🤖', label: 'Local AI Analysis' },
+          { icon: '📊', label: '25+ Chart Types' },
+          { icon: '🔒', label: '100% Privacy' },
+          { icon: '⚡', label: 'Instant Dashboard' }
+        ].map(f => (
+          <div key={f.label} className="flex items-center gap-3 p-3.5 rounded-2xl bg-white dark:bg-white/[0.03] border border-black/[0.06] dark:border-white/[0.06] shadow-sm shadow-black/[0.02] dark:shadow-none hover:border-brand-500/30 transition-all duration-300">
+            <span className="text-2xl">{f.icon}</span>
+            <span className="text-[10px] font-bold uppercase tracking-widest text-slate-500 dark:text-white/40 leading-tight">{f.label}</span>
+          </div>
+        ))}
+      </div>
+
       {/* Step 1: Upload */}
       {step === 'upload' && (
         <div className="animate-fade-in">

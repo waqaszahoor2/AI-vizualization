@@ -104,28 +104,23 @@ Use 4-10 charts when the image shows many visuals. Match chart types to the imag
 
     def _build_dashboard_prompt(self, info: Dict, prompt: str, sample: Optional[List[Dict]]) -> str:
         cols = self._describe_columns(info.get("columns_info", []))
-        sample_str = json.dumps(sample[:3] if sample else [], indent=2, default=str)
-        return f"""You are a BI Expert. Create a dashboard spec in JSON.
-DATASET: {info.get('rows_count','?')} rows, {info.get('columns_count','?')} cols
-COLUMNS:
-{cols}
-SAMPLE:
-{sample_str}
-REQUEST: {prompt}
-CHART TYPES: line, area, stacked_area, bar, horizontal_bar, stacked_bar, percent_stacked_bar, pie, donut, scatter, bubble, heatmap, histogram, box, waterfall, funnel, treemap, sunburst, sankey, gauge, radar, candlestick, combo, pareto, table, ribbon, map
-Return ONLY JSON: {{"title":"","summary":"","insights":[],"kpis":[],"charts":[],"layout":[]}}
-No markdown, no talk. ONLY JSON."""
+        sample_str = json.dumps(sample[:2] if sample else [], default=str)
+        return f"""Task: Create BI Dashboard JSON.
+Data: {info.get('rows_count','?')} rows.
+Cols: {cols}
+Sample: {sample_str}
+User: {prompt}
+Format: {{"title":"","summary":"","insights":[],"kpis":[],"charts":[],"layout":[]}}
+Response: JSON only."""
 
     def _describe_columns(self, cols: List[Dict]) -> str:
         lines = []
         for c in cols:
-            s = f"- {c['name']}: {c.get('dtype','?')} (nulls:{c.get('null_count',0)}, unique:{c.get('unique_count','?')})"
-            if c.get("is_numeric") and c.get("mean") is not None:
-                s += f" [range:{c.get('min_value')}-{c.get('max_value')}, mean:{c.get('mean')}]"
-            elif c.get("top_values"):
-                s += f" [top:{','.join(list(c['top_values'].keys())[:3])}]"
+            s = f"{c['name']}({c.get('dtype','?')})"
+            if c.get("top_values"):
+                s += f"[{','.join(list(c['top_values'].keys())[:2])}]"
             lines.append(s)
-        return "\n".join(lines)
+        return ", ".join(lines)
 
     async def _call_kimi(self, prompt: str, model: str = "moonshot-v1-8k") -> str:
         async with aiohttp.ClientSession() as session:
@@ -153,13 +148,14 @@ No markdown, no talk. ONLY JSON."""
             payload = {
                 "model": model, 
                 "prompt": prompt, 
-                "stream": False, 
+                "stream": False,
+                "keep_alive": "10m",
                 "options": {
                     "temperature": 0.0, 
                     "num_predict": settings.OLLAMA_NUM_PREDICT,
                     "num_ctx": settings.OLLAMA_NUM_CTX,
-                    "top_k": 20,
-                    "top_p": 0.8
+                    "top_k": 10,
+                    "top_p": 0.5
                 }
             }
             async with session.post(f"{self.base_url}/api/generate", json=payload, timeout=aiohttp.ClientTimeout(total=self.timeout)) as resp:
