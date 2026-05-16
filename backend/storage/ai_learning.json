@@ -48,5 +48,30 @@
         }
       ]
     }
+  },
+  {
+    "q": "make dashboards and also add slicer and filters on all charts and make dashboard like show in pic",
+    "a": {
+      "title": "Dashboard: From Image: make dashboards and also add slicer an",
+      "summary": "Dashboard for 700 rows",
+      "charts": [
+        {
+          "type": "line",
+          "title": "Units Sold Over Time",
+          "x": "Date",
+          "y": [
+            "Units Sold"
+          ]
+        },
+        {
+          "type": "bar",
+          "title": "Units Sold by Segment",
+          "x": "Segment",
+          "y": [
+            "Units Sold"
+          ]
+        }
+      ]
+    }
   }
 ]

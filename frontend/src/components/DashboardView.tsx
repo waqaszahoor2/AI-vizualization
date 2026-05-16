@@ -280,7 +280,17 @@ export default function DashboardView({ onBack, readOnly }: Props) {
                   }
                 }}
               >
-                <div className="h-full p-0.5 group/chart">
+                <div className="h-full p-0.5 group/chart relative">
+                  {/* Drag Handle */}
+                  {allowEditing && (
+                    <div className="chart-drag-handle absolute top-4 left-4 z-30 p-1.5 rounded-lg bg-black/5 dark:bg-white/5 opacity-0 group-hover/chart:opacity-100 transition-opacity cursor-grab active:cursor-grabbing text-slate-400 dark:text-white/30 hover:text-brand-600 dark:hover:text-brand-400">
+                      <svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor">
+                        <circle cx="2" cy="2" r="1.5" /><circle cx="2" cy="6" r="1.5" /><circle cx="2" cy="10" r="1.5" />
+                        <circle cx="6" cy="2" r="1.5" /><circle cx="6" cy="6" r="1.5" /><circle cx="6" cy="10" r="1.5" />
+                      </svg>
+                    </div>
+                  )}
+
                   <div className="glass-card h-full p-4 overflow-hidden relative">
                     <ChartWidget
                       chart={chart}
