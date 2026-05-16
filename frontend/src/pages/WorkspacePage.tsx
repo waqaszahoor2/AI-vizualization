@@ -50,6 +50,8 @@ export default function WorkspacePage() {
   const [newPromptTitle, setNewPromptTitle] = useState('');
   const [newPromptBody, setNewPromptBody] = useState('');
   const [step, setStep] = useState<'upload' | 'prompt' | 'dashboard'>( dashboard ? 'dashboard' : uploadData ? 'prompt' : 'upload');
+  const [elapsedSeconds, setElapsedSeconds] = useState(0);
+  const timerRef = React.useRef<NodeJS.Timeout | null>(null);
 
   const refreshAiHealth = useCallback(() => {
     aiHealth()
@@ -125,11 +127,16 @@ export default function WorkspacePage() {
     }
     try {
       setIsGenerating(true);
+      setElapsedSeconds(0);
+      timerRef.current = setInterval(() => {
+        setElapsedSeconds(prev => prev + 1);
+      }, 1000);
+      
       setGenerationStep('AI is analyzing your data...');
 
-      setTimeout(() => setGenerationStep('Generating chart configurations...'), 5000);
-      setTimeout(() => setGenerationStep('Building dashboard layout...'), 15000);
-      setTimeout(() => setGenerationStep('Preparing visualizations...'), 25000);
+      setTimeout(() => setGenerationStep('Generating chart configurations (Est. 10s)...'), 4000);
+      setTimeout(() => setGenerationStep('Building dashboard layout (Est. 20s)...'), 12000);
+      setTimeout(() => setGenerationStep('Finalizing visualizations...'), 20000);
 
       const result = refImage
         ? await generateDashboardFromImage(uploadData.file_path, refImage, prompt.trim())
@@ -142,6 +149,10 @@ export default function WorkspacePage() {
     } finally {
       setIsGenerating(false);
       setGenerationStep('');
+      if (timerRef.current) {
+        clearInterval(timerRef.current);
+        timerRef.current = null;
+      }
     }
   };
 
@@ -412,9 +423,14 @@ export default function WorkspacePage() {
             }`}
           >
             {isGenerating ? (
-              <div className="flex items-center justify-center gap-3">
-                <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-                {generationStep}
+              <div className="flex flex-col items-center gap-1">
+                <div className="flex items-center justify-center gap-3">
+                  <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                  <span className="text-base">{generationStep}</span>
+                </div>
+                <div className="text-[11px] font-medium opacity-70 tracking-widest uppercase">
+                  Time Elapsed: {elapsedSeconds}s
+                </div>
               </div>
             ) : (
               <>{refImage ? '🖼 Generate from image + prompt' : '🚀 Generate Visualization'}</>
