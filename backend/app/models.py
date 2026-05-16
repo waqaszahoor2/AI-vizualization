@@ -77,6 +77,8 @@ class Dashboard(Base):
     share_token = Column(String, unique=True, nullable=True, index=True)
     share_type = Column(String, default="private")  # private, public, invite
     user_preferences = Column(JSON, default=dict)
+    is_successful = Column(Boolean, default=True)  # Used for RLHF learning
+    feedback_score = Column(Integer, default=0)    # -1 to 5 scale
     created_at = Column(DateTime, default=datetime.utcnow)
     updated_at = Column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
 

@@ -105,8 +105,21 @@ Use 4-10 charts when the image shows many visuals. Match chart types to the imag
     def _build_dashboard_prompt(self, info: Dict, prompt: str, sample: Optional[List[Dict]]) -> str:
         cols = self._describe_columns(info.get("columns_info", []))
         sample_str = json.dumps(sample[:2] if sample else [], default=str)
+        
+        # Self-Learning: Inject best patterns
+        patterns = ""
+        try:
+            learning_path = "storage/ai_learning.json"
+            if os.path.exists(learning_path):
+                with open(learning_path, 'r') as f:
+                    memory = json.load(f)
+                    best = memory[-1:] # Just the latest successful one for speed
+                    if best:
+                        patterns = f"LEARNED PATTERN: Q:{best[0]['q']} -> A:{json.dumps(best[0]['a'])}\n"
+        except: pass
+
         return f"""Task: Create BI Dashboard JSON.
-Data: {info.get('rows_count','?')} rows.
+{patterns}Data: {info.get('rows_count','?')} rows.
 Cols: {cols}
 Sample: {sample_str}
 User: {prompt}
@@ -138,6 +151,37 @@ Response: JSON only."""
                     data = await resp.json()
                     return data["choices"][0]["message"]["content"]
                 raise Exception(f"Kimi error {resp.status}: {await resp.text()}")
+
+    def update_learning_memory(self, user_prompt: str, dashboard_data: Dict):
+        """Save a successful generation to local memory for future few-shot learning."""
+        try:
+            import os
+            os.makedirs("storage", exist_ok=True)
+            path = "storage/ai_learning.json"
+            memory = []
+            if os.path.exists(path):
+                with open(path, 'r', encoding='utf-8') as f:
+                    memory = json.load(f)
+            
+            # Simple learning: store prompt and basic structure
+            # We strip data values to keep memory light
+            learned_a = {
+                "title": dashboard_data.get("title"),
+                "summary": dashboard_data.get("summary"),
+                "charts": [
+                    {"type": c["type"], "title": c["title"], "x": c["x_axis"], "y": c["y_axis"]} 
+                    for c in dashboard_data.get("charts", [])[:2]
+                ]
+            }
+            
+            memory.append({"q": user_prompt, "a": learned_a})
+            memory = memory[-10:] # Keep only the best 10 patterns
+            
+            with open(path, 'w', encoding='utf-8') as f:
+                json.dump(memory, f, indent=2)
+            logger.info(f"AI memory updated with new successful pattern: {user_prompt[:50]}")
+        except Exception as e:
+            logger.error(f"Failed to update AI memory: {e}")
 
     async def _call_ollama(self, prompt: str, model: Optional[str] = None) -> str:
         # Only use Kimi if explicitly requested via model name

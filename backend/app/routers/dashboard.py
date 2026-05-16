@@ -64,6 +64,9 @@ async def generate_dashboard(request: DashboardCreate):
             "updated_at": datetime.utcnow().isoformat(),
         }
         dashboards_db[dash_id] = stored
+        
+        # Self-learning: Feed back the success pattern
+        ollama_service.update_learning_memory(request.prompt, stored)
 
         return {"success": True, "dashboard": stored}
 
@@ -121,6 +124,10 @@ async def generate_dashboard_from_image(request: DashboardFromImageCreate):
             "updated_at": datetime.utcnow().isoformat(),
         }
         dashboards_db[dash_id] = stored
+        
+        # Self-learning: Feed back the success pattern
+        ollama_service.update_learning_memory(request.prompt, stored)
+
         return {"success": True, "dashboard": stored}
     except HTTPException:
         raise
